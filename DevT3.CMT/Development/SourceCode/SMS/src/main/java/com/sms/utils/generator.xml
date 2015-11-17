@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<!-- oracle lib location -->
+	<properties resource="config.properties"/>
+	<classPathEntry location="${classPath}" />
+	<context id="DB2Tables" targetRuntime="MyBatis3">
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		<!-- oracle URL、username、password -->
+		<jdbcConnection driverClass="${driverClassName}" connectionURL="${jdbc_url}" userId="${jdbc_username}" password="${jdbc_password}">
+		</jdbcConnection>
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+		<!-- model package and location -->
+		<javaModelGenerator targetPackage="com.sms.model" targetProject="${project}">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		<!-- mapping package and location -->
+		<sqlMapGenerator targetPackage="com.sms.mappers" targetProject="${project}">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+		<!-- dao package and location -->
+		<javaClientGenerator type="XMLMAPPER" targetPackage="com.sms.dao" targetProject="${project}">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+		<!-- table name,  change tableName and domainObjectName  -->
+		<table tableName="csr_plan" domainObjectName="om" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />
+		
+	</context>
+</generatorConfiguration>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+	<title>杭州卫生云信息平台</title>
+	<link rel="stylesheet" type="text/css" href="css/base.css">
+	<link rel="stylesheet" type="text/css" href="css/layout.css">
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+</head>
+<body>
+	<div class="pop-window pop-viewPlan">
+		<div class="title clearfix">
+			2015年第3季度社区卫生所满意度测评
+			<span class="delPlan"></span>
+			<span class="editPlan"></span>
+		</div>
+		<div class="data">
+			<div class="state state01">  <!-- state01:未开始  state02:执行中  state03:已完成   -->
+				<!-- 未开始 -->
+				<img src="images/notStarted.png">
+				<!-- 执行中 -->
+				<!-- <img src="images/started.png"> -->
+				<!-- 已完成 -->
+				<!-- <img src="images/over.png"> -->
+
+				<p>未开始</p>
+			</div>
+			<p><label>测评对象：</label></label><span class="bold">所有社区卫生服务中心</span>	 <span class="viewInfo">查看详细</span></p>
+				<div class="planInfo">
+					<p>西溪街道社区卫生服务中心</p>
+					<p>灵隐街道社区卫生服务中心</p>
+				</div>
+			<p><label>测评日期：</label><span class="bold">2015-07-01</span> 至  <span class="bold">2015-09-30</span></p>
+			<p><label>每天发送短信数量：</label><span class="count">2000</span></p>
+		</div>
+		<div>
+			<p><label>制定机构：</label>卫生局</p>
+			<p><label>制定人：</label>何顺东</p>
+			<p><label>制定时间：</label>2015-06-28 14:30</p>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(".viewInfo").click(function(){
+			var _this=$(this);
+			if (_this.hasClass("active")) {
+				_this.removeClass("active").html("查看详细");
+			}else{
+				_this.addClass("active").html("收起详细");
+			}
+			$(".planInfo").toggle()
+		});
+
+		var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+
+		$(".editPlan").click(function(){
+			parent.newPlan("修改测评计划");
+			parent.layer.close(index);
+		});
+	</script>
+</body>
+</html>

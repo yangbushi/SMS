@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sms.dao.HealthcareOrganizationDao">
+	<resultMap id="BaseResultMap" type="com.sms.model.HealthcareOrganization">
+		<id column="HCO_ID" property="hcoId" jdbcType="INTEGER" />
+		<result column="HCO_NAME" property="hcoName" jdbcType="VARCHAR" />
+		<result column="DIVISION_ID" property="divisionId" jdbcType="INTEGER" />
+		<result column="HCO_TYPE" property="hcoType" jdbcType="VARCHAR" />
+		<result column="HOSPITAL_CLASS" property="hospitalClass"
+			jdbcType="VARCHAR" />
+		<result column="HCO_CODE" property="hcoCode" jdbcType="VARCHAR" />
+		<result column="CONTACT_NAME" property="contactName" jdbcType="VARCHAR" />
+		<result column="CONTACT_TEL" property="contactTel" jdbcType="VARCHAR" />
+		<result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+		<result column="RESPONSIBLE_PERSON" property="responsiblePerson"
+			jdbcType="VARCHAR" />
+		<result column="REMARKS" property="remarks" jdbcType="VARCHAR" />
+		<result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		HCO_ID, HCO_NAME, DIVISION_ID, HCO_TYPE, HOSPITAL_CLASS,
+		HCO_CODE,
+		CONTACT_NAME,
+		CONTACT_TEL, ADDRESS, RESPONSIBLE_PERSON,
+		REMARKS, UPDATE_TIME
+	</sql>
+	<sql id="HcoCodeName_Column_List">
+		HCO_NAME,
+		HCO_CODE
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from healthcare_organization
+		where HCO_ID = #{hcoId,jdbcType=INTEGER}
+	</select>
+	<select id="getAllOnlyHcoCodeName" resultMap="BaseResultMap">
+		select
+		<include refid="HcoCodeName_Column_List" />
+		from healthcare_organization
+	</select>
+	<select id="getAll" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from healthcare_organization
+	</select>
+	<select id="getAllOnlyHcoCodeNameByHcoType" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from healthcare_organization
+		where HCO_TYPE = #{hcoType,jdbcType=VARCHAR}
+	</select>
+	
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		healthcare_organization
+		where HCO_ID = #{hcoId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.sms.model.HealthcareOrganization">
+		insert into
+		healthcare_organization (HCO_ID, HCO_NAME, DIVISION_ID,
+		HCO_TYPE,
+		HOSPITAL_CLASS, HCO_CODE,
+		CONTACT_NAME, CONTACT_TEL, ADDRESS,
+		RESPONSIBLE_PERSON, REMARKS, UPDATE_TIME
+		)
+		values
+		(#{hcoId,jdbcType=INTEGER}, #{hcoName,jdbcType=VARCHAR},
+		#{divisionId,jdbcType=INTEGER},
+		#{hcoType,jdbcType=VARCHAR},
+		#{hospitalClass,jdbcType=VARCHAR}, #{hcoCode,jdbcType=VARCHAR},
+		#{contactName,jdbcType=VARCHAR}, #{contactTel,jdbcType=VARCHAR},
+		#{address,jdbcType=VARCHAR},
+		#{responsiblePerson,jdbcType=VARCHAR},
+		#{remarks,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.sms.model.HealthcareOrganization">
+		insert into healthcare_organization
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="hcoId != null">
+				HCO_ID,
+			</if>
+			<if test="hcoName != null">
+				HCO_NAME,
+			</if>
+			<if test="divisionId != null">
+				DIVISION_ID,
+			</if>
+			<if test="hcoType != null">
+				HCO_TYPE,
+			</if>
+			<if test="hospitalClass != null">
+				HOSPITAL_CLASS,
+			</if>
+			<if test="hcoCode != null">
+				HCO_CODE,
+			</if>
+			<if test="contactName != null">
+				CONTACT_NAME,
+			</if>
+			<if test="contactTel != null">
+				CONTACT_TEL,
+			</if>
+			<if test="address != null">
+				ADDRESS,
+			</if>
+			<if test="responsiblePerson != null">
+				RESPONSIBLE_PERSON,
+			</if>
+			<if test="remarks != null">
+				REMARKS,
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="hcoId != null">
+				#{hcoId,jdbcType=INTEGER},
+			</if>
+			<if test="hcoName != null">
+				#{hcoName,jdbcType=VARCHAR},
+			</if>
+			<if test="divisionId != null">
+				#{divisionId,jdbcType=INTEGER},
+			</if>
+			<if test="hcoType != null">
+				#{hcoType,jdbcType=VARCHAR},
+			</if>
+			<if test="hospitalClass != null">
+				#{hospitalClass,jdbcType=VARCHAR},
+			</if>
+			<if test="hcoCode != null">
+				#{hcoCode,jdbcType=VARCHAR},
+			</if>
+			<if test="contactName != null">
+				#{contactName,jdbcType=VARCHAR},
+			</if>
+			<if test="contactTel != null">
+				#{contactTel,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="responsiblePerson != null">
+				#{responsiblePerson,jdbcType=VARCHAR},
+			</if>
+			<if test="remarks != null">
+				#{remarks,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.sms.model.HealthcareOrganization">
+		update healthcare_organization
+		<set>
+			<if test="hcoName != null">
+				HCO_NAME = #{hcoName,jdbcType=VARCHAR},
+			</if>
+			<if test="divisionId != null">
+				DIVISION_ID = #{divisionId,jdbcType=INTEGER},
+			</if>
+			<if test="hcoType != null">
+				HCO_TYPE = #{hcoType,jdbcType=VARCHAR},
+			</if>
+			<if test="hospitalClass != null">
+				HOSPITAL_CLASS = #{hospitalClass,jdbcType=VARCHAR},
+			</if>
+			<if test="hcoCode != null">
+				HCO_CODE = #{hcoCode,jdbcType=VARCHAR},
+			</if>
+			<if test="contactName != null">
+				CONTACT_NAME = #{contactName,jdbcType=VARCHAR},
+			</if>
+			<if test="contactTel != null">
+				CONTACT_TEL = #{contactTel,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				ADDRESS = #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="responsiblePerson != null">
+				RESPONSIBLE_PERSON =
+				#{responsiblePerson,jdbcType=VARCHAR},
+			</if>
+			<if test="remarks != null">
+				REMARKS = #{remarks,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where HCO_ID = #{hcoId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.sms.model.HealthcareOrganization">
+		update
+		healthcare_organization
+		set HCO_NAME = #{hcoName,jdbcType=VARCHAR},
+		DIVISION_ID = #{divisionId,jdbcType=INTEGER},
+		HCO_TYPE =
+		#{hcoType,jdbcType=VARCHAR},
+		HOSPITAL_CLASS =
+		#{hospitalClass,jdbcType=VARCHAR},
+		HCO_CODE =
+		#{hcoCode,jdbcType=VARCHAR},
+		CONTACT_NAME =
+		#{contactName,jdbcType=VARCHAR},
+		CONTACT_TEL =
+		#{contactTel,jdbcType=VARCHAR},
+		ADDRESS = #{address,jdbcType=VARCHAR},
+		RESPONSIBLE_PERSON = #{responsiblePerson,jdbcType=VARCHAR},
+		REMARKS =
+		#{remarks,jdbcType=VARCHAR},
+		UPDATE_TIME =
+		#{updateTime,jdbcType=TIMESTAMP}
+		where HCO_ID =
+		#{hcoId,jdbcType=INTEGER}
+	</update>
+</mapper>

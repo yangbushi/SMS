@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sms.dao.EvaluationPlanDao" >
+  <resultMap id="BaseResultMap" type="com.sms.model.EvaluationPlan" >
+    <id column="PLAN_ID" property="planId" jdbcType="INTEGER" />
+    <result column="PLAN_NAME" property="planName" jdbcType="VARCHAR" />
+    <result column="START_DATE_TIME" property="startDateTime" jdbcType="TIMESTAMP" />
+    <result column="END_DATE_TIME" property="endDateTime" jdbcType="TIMESTAMP" />
+    <result column="EVALUATE_SCOPE" property="evaluateScope" jdbcType="VARCHAR" />
+    <result column="EVALUATE_ORG_CODE" property="evaluateOrgCode" jdbcType="VARCHAR" />
+    <result column="EVALUATE_ORG_NAME" property="evaluateOrgName" jdbcType="VARCHAR" />
+    <result column="DAY_SMS_COUNT_LIMIT" property="daySmsCountLimit" jdbcType="INTEGER" />
+    <result column="CREATE_ORG_CODE" property="createOrgCode" jdbcType="VARCHAR" />
+    <result column="CREATE_ORG_NAME" property="createOrgName" jdbcType="VARCHAR" />
+    <result column="CREATOR_ID" property="creatorId" jdbcType="VARCHAR" />
+    <result column="CREATOR_NAME" property="creatorName" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE_TIME" property="createDateTime" jdbcType="TIMESTAMP" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="CANCEL_PERSON_ID" property="cancelPersonId" jdbcType="VARCHAR" />
+    <result column="CANCEL_PERSON_NAME" property="cancelPersonName" jdbcType="VARCHAR" />
+    <result column="CANCEL_DATE_TIME" property="cancelDateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PLAN_ID, PLAN_NAME, START_DATE_TIME, END_DATE_TIME, EVALUATE_SCOPE, EVALUATE_ORG_CODE, 
+    EVALUATE_ORG_NAME, DAY_SMS_COUNT_LIMIT, CREATE_ORG_CODE, CREATE_ORG_NAME, CREATOR_ID, 
+    CREATOR_NAME, CREATE_DATE_TIME, STATUS,CANCEL_PERSON_ID,CANCEL_PERSON_NAME,CANCEL_DATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from csr_plan
+    where PLAN_ID = #{planId,jdbcType=INTEGER}
+  </select>
+   <select id="getAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from csr_plan
+  </select>
+   <select id="getPageItems" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from csr_plan order by CREATE_DATE_TIME limit #{0},#{1}
+  </select>
+  <select id="getEvaluationPlans" resultMap="BaseResultMap">
+     select 
+    <include refid="Base_Column_List" />
+    from csr_plan where STATUS in 
+    <foreach collection="array" item="item" open="(" separator="," close=")">
+        #{item} 
+    </foreach>
+  </select>
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from csr_plan
+    where PLAN_ID = #{planId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sms.model.EvaluationPlan" >
+    insert into csr_plan (PLAN_ID, PLAN_NAME, START_DATE_TIME, 
+      END_DATE_TIME, EVALUATE_SCOPE, EVALUATE_ORG_CODE, 
+      EVALUATE_ORG_NAME, DAY_SMS_COUNT_LIMIT, CREATE_ORG_CODE, 
+      CREATE_ORG_NAME, CREATOR_ID, CREATOR_NAME, 
+      CREATE_DATE_TIME, STATUS, CANCEL_PERSON_ID, CANCEL_PERSON_NAME, CANCEL_DATE_TIME)
+    values (#{planId,jdbcType=INTEGER}, #{planName,jdbcType=VARCHAR}, #{startDateTime,jdbcType=TIMESTAMP}, 
+      #{endDateTime,jdbcType=TIMESTAMP}, #{evaluateScope,jdbcType=VARCHAR}, #{evaluateOrgCode,jdbcType=VARCHAR}, 
+      #{evaluateOrgName,jdbcType=VARCHAR}, #{daySmsCountLimit,jdbcType=INTEGER}, #{createOrgCode,jdbcType=VARCHAR}, 
+      #{createOrgName,jdbcType=VARCHAR}, #{creatorId,jdbcType=VARCHAR}, #{creatorName,jdbcType=VARCHAR}, 
+      #{createDateTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{cancelPersonId,jdbcType=VARCHAR}, #{cancelPersonName,jdbcType=VARCHAR}, #{cancelDateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sms.model.EvaluationPlan" >
+    insert into csr_plan
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="planId != null" >
+        PLAN_ID,
+      </if>
+      <if test="planName != null" >
+        PLAN_NAME,
+      </if>
+      <if test="startDateTime != null" >
+        START_DATE_TIME,
+      </if>
+      <if test="endDateTime != null" >
+        END_DATE_TIME,
+      </if>
+      <if test="evaluateScope != null" >
+        EVALUATE_SCOPE,
+      </if>
+      <if test="evaluateOrgCode != null" >
+        EVALUATE_ORG_CODE,
+      </if>
+      <if test="evaluateOrgName != null" >
+        EVALUATE_ORG_NAME,
+      </if>
+      <if test="daySmsCountLimit != null" >
+        DAY_SMS_COUNT_LIMIT,
+      </if>
+      <if test="createOrgCode != null" >
+        CREATE_ORG_CODE,
+      </if>
+      <if test="createOrgName != null" >
+        CREATE_ORG_NAME,
+      </if>
+      <if test="creatorId != null" >
+        CREATOR_ID,
+      </if>
+      <if test="creatorName != null" >
+        CREATOR_NAME,
+      </if>
+      <if test="createDateTime != null" >
+        CREATE_DATE_TIME,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="cancelPersonId != null" >
+        CANCEL_PERSON_ID,
+      </if>
+      <if test="cancelPersonName != null" >
+        CANCEL_PERSON_NAME,
+      </if>
+      <if test="cancelDateTime != null" >
+        CANCEL_DATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="planId != null" >
+        #{planId,jdbcType=INTEGER},
+      </if>
+      <if test="planName != null" >
+        #{planName,jdbcType=VARCHAR},
+      </if>
+      <if test="startDateTime != null" >
+        #{startDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDateTime != null" >
+        #{endDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="evaluateScope != null" >
+        #{evaluateScope,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluateOrgCode != null" >
+        #{evaluateOrgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluateOrgName != null" >
+        #{evaluateOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="daySmsCountLimit != null" >
+        #{daySmsCountLimit,jdbcType=INTEGER},
+      </if>
+      <if test="createOrgCode != null" >
+        #{createOrgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrgName != null" >
+        #{createOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorId != null" >
+        #{creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorName != null" >
+        #{creatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDateTime != null" >
+        #{createDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="cancelPersonId != null" >
+        #{cancelPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelPersonName != null" >
+        #{cancelPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelDateTime != null" >
+        #{cancelDateTime,jdbcType=TIMESTAMP},
+      </if>      
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sms.model.EvaluationPlan" >
+    update csr_plan
+    <set >
+      <if test="planName != null" >
+        PLAN_NAME = #{planName,jdbcType=VARCHAR},
+      </if>
+      <if test="startDateTime != null" >
+        START_DATE_TIME = #{startDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDateTime != null" >
+        END_DATE_TIME = #{endDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="evaluateScope != null" >
+        EVALUATE_SCOPE = #{evaluateScope,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluateOrgCode != null" >
+        EVALUATE_ORG_CODE = #{evaluateOrgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluateOrgName != null" >
+        EVALUATE_ORG_NAME = #{evaluateOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="daySmsCountLimit != null" >
+        DAY_SMS_COUNT_LIMIT = #{daySmsCountLimit,jdbcType=INTEGER},
+      </if>
+      <if test="createOrgCode != null" >
+        CREATE_ORG_CODE = #{createOrgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createOrgName != null" >
+        CREATE_ORG_NAME = #{createOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorId != null" >
+        CREATOR_ID = #{creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorName != null" >
+        CREATOR_NAME = #{creatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDateTime != null" >
+        CREATE_DATE_TIME = #{createDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="cancelPersonId != null" >
+        CANCEL_PERSON_ID = #{cancelPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelPersonName != null" >
+        CANCEL_PERSON_NAME = #{cancelPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelDateTime != null" >
+        CANCEL_DATE_TIME = #{cancelDateTime,jdbcType=TIMESTAMP}
+      </if>
+    </set>
+    where PLAN_ID = #{planId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sms.model.EvaluationPlan" >
+    update csr_plan
+    set PLAN_NAME = #{planName,jdbcType=VARCHAR},
+      START_DATE_TIME = #{startDateTime,jdbcType=TIMESTAMP},
+      END_DATE_TIME = #{endDateTime,jdbcType=TIMESTAMP},
+      EVALUATE_SCOPE = #{evaluateScope,jdbcType=VARCHAR},
+      EVALUATE_ORG_CODE = #{evaluateOrgCode,jdbcType=VARCHAR},
+      EVALUATE_ORG_NAME = #{evaluateOrgName,jdbcType=VARCHAR},
+      DAY_SMS_COUNT_LIMIT = #{daySmsCountLimit,jdbcType=INTEGER},
+      CREATE_ORG_CODE = #{createOrgCode,jdbcType=VARCHAR},
+      CREATE_ORG_NAME = #{createOrgName,jdbcType=VARCHAR},
+      CREATOR_ID = #{creatorId,jdbcType=VARCHAR},
+      CREATOR_NAME = #{creatorName,jdbcType=VARCHAR},
+      CREATE_DATE_TIME = #{createDateTime,jdbcType=TIMESTAMP},
+      STATUS = #{status,jdbcType=INTEGER},
+      CANCEL_PERSON_ID = #{cancelPersonId,jdbcType=VARCHAR},
+      CANCEL_PERSON_NAME = #{cancelPersonName,jdbcType=VARCHAR},
+      CANCEL_DATE_TIME = #{cancelDateTime,jdbcType=TIMESTAMP}
+    where PLAN_ID = #{planId,jdbcType=INTEGER}
+  </update>
+</mapper>

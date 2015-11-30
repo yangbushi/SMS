@@ -1,0 +1,829 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sms.dao.PersonMasterIndexDao" >
+  <resultMap id="BaseResultMap" type="com.sms.model.PersonMasterIndex" >
+    <id column="identity_no" property="identityNo" jdbcType="VARCHAR" />
+    <result column="create_hco_code" property="createHcoCode" jdbcType="VARCHAR" />
+    <result column="create_hco_name" property="createHcoName" jdbcType="VARCHAR" />
+    <result column="create_user_name" property="createUserName" jdbcType="VARCHAR" />
+    <result column="create_date_time" property="createDateTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="credit_flag" property="creditFlag" jdbcType="INTEGER" />
+    <result column="credit_ammount" property="creditAmmount" jdbcType="DECIMAL" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="name_pinyin" property="namePinyin" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="date_of_birth" property="dateOfBirth" jdbcType="TIMESTAMP" />
+    <result column="country" property="country" jdbcType="VARCHAR" />
+    <result column="nation" property="nation" jdbcType="VARCHAR" />
+    <result column="marriage_status_name" property="marriageStatusName" jdbcType="VARCHAR" />
+    <result column="marriage_status_code" property="marriageStatusCode" jdbcType="VARCHAR" />
+    <result column="education_level_code" property="educationLevelCode" jdbcType="VARCHAR" />
+    <result column="education_level_name" property="educationLevelName" jdbcType="VARCHAR" />
+    <result column="political_status_code" property="politicalStatusCode" jdbcType="VARCHAR" />
+    <result column="political_status_name" property="politicalStatusName" jdbcType="VARCHAR" />
+    <result column="job_type_code" property="jobTypeCode" jdbcType="VARCHAR" />
+    <result column="job_status_code" property="jobStatusCode" jdbcType="VARCHAR" />
+    <result column="job_type_name" property="jobTypeName" jdbcType="VARCHAR" />
+    <result column="job_status_name" property="jobStatusName" jdbcType="VARCHAR" />
+    <result column="phone_number" property="phoneNumber" jdbcType="VARCHAR" />
+    <result column="mobile_number" property="mobileNumber" jdbcType="VARCHAR" />
+    <result column="contact_name" property="contactName" jdbcType="VARCHAR" />
+    <result column="contact_phone" property="contactPhone" jdbcType="VARCHAR" />
+    <result column="contact_mobile" property="contactMobile" jdbcType="VARCHAR" />
+    <result column="native_place" property="nativePlace" jdbcType="VARCHAR" />
+    <result column="birth_place" property="birthPlace" jdbcType="VARCHAR" />
+    <result column="home_address" property="homeAddress" jdbcType="VARCHAR" />
+    <result column="blood_type_abo" property="bloodTypeAbo" jdbcType="VARCHAR" />
+    <result column="blood_type_rh" property="bloodTypeRh" jdbcType="VARCHAR" />
+    <result column="child_birth" property="childBirth" jdbcType="INTEGER" />
+    <result column="vaccination_history" property="vaccinationHistory" jdbcType="INTEGER" />
+    <result column="allergy_history" property="allergyHistory" jdbcType="INTEGER" />
+    <result column="allergy_desc" property="allergyDesc" jdbcType="VARCHAR" />
+    <result column="past_history" property="pastHistory" jdbcType="INTEGER" />
+    <result column="past_desc" property="pastDesc" jdbcType="VARCHAR" />
+    <result column="genetic_history" property="geneticHistory" jdbcType="INTEGER" />
+    <result column="iving_habits" property="ivingHabits" jdbcType="INTEGER" />
+    <result column="hypertension" property="hypertension" jdbcType="INTEGER" />
+    <result column="hypertension_desc" property="hypertensionDesc" jdbcType="VARCHAR" />
+    <result column="tumor" property="tumor" jdbcType="INTEGER" />
+    <result column="tumor_desc" property="tumorDesc" jdbcType="VARCHAR" />
+    <result column="asthma" property="asthma" jdbcType="INTEGER" />
+    <result column="heart_dease" property="heartDease" jdbcType="INTEGER" />
+    <result column="cardio_cerebrovascular_disease" property="cardioCerebrovascularDisease" jdbcType="INTEGER" />
+    <result column="epilepsy" property="epilepsy" jdbcType="INTEGER" />
+    <result column="psychosis" property="psychosis" jdbcType="INTEGER" />
+    <result column="psychosis_desc" property="psychosisDesc" jdbcType="VARCHAR" />
+    <result column="coagulopathy" property="coagulopathy" jdbcType="INTEGER" />
+    <result column="diabetes" property="diabetes" jdbcType="INTEGER" />
+    <result column="diabetes_desc" property="diabetesDesc" jdbcType="VARCHAR" />
+    <result column="glaucoma" property="glaucoma" jdbcType="INTEGER" />
+    <result column="dialysis" property="dialysis" jdbcType="INTEGER" />
+    <result column="transplant" property="transplant" jdbcType="INTEGER" />
+    <result column="organ_deficiency" property="organDeficiency" jdbcType="INTEGER" />
+    <result column="removable_prosthesis" property="removableProsthesis" jdbcType="INTEGER" />
+    <result column="pacemaker" property="pacemaker" jdbcType="INTEGER" />
+    <result column="medical_warnning" property="medicalWarnning" jdbcType="VARCHAR" />
+    <result column="primary_hco_code" property="primaryHcoCode" jdbcType="VARCHAR" />
+    <result column="primary_hco_name" property="primaryHcoName" jdbcType="VARCHAR" />
+    <result column="update_user_name" property="updateUserName" jdbcType="VARCHAR" />
+    <result column="update_date_time" property="updateDateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    identity_no, create_hco_code, create_hco_name, create_user_name, create_date_time, 
+    status, credit_flag, credit_ammount, name, name_pinyin, sex, date_of_birth, country, 
+    nation, marriage_status_name, marriage_status_code, education_level_code, education_level_name, 
+    political_status_code, political_status_name, job_type_code, job_status_code, job_type_name, 
+    job_status_name, phone_number, mobile_number, contact_name, contact_phone, contact_mobile, 
+    native_place, birth_place, home_address, blood_type_abo, blood_type_rh, child_birth, 
+    vaccination_history, allergy_history, allergy_desc, past_history, past_desc, genetic_history, 
+    iving_habits, hypertension, hypertension_desc, tumor, tumor_desc, asthma, heart_dease, 
+    cardio_cerebrovascular_disease, epilepsy, psychosis, psychosis_desc, coagulopathy, 
+    diabetes, diabetes_desc, glaucoma, dialysis, transplant, organ_deficiency, removable_prosthesis, 
+    pacemaker, medical_warnning, primary_hco_code, primary_hco_name, update_user_name, 
+    update_date_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from hc_person_master_index
+    where identity_no = #{identityNo,jdbcType=VARCHAR}
+  </select>
+    <select id="getContactMobileByIdentityNo" resultType="java.lang.String" parameterType="java.lang.String" >
+    select contact_mobile
+    from hc_person_master_index
+    where identity_no = #{identityNo,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getMobileNumberByIdentityNo" resultType="java.lang.String" parameterType="java.lang.String" >
+    select mobile_number
+    from hc_person_master_index
+    where identity_no = #{identityNo,jdbcType=VARCHAR}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from hc_person_master_index
+    where identity_no = #{identityNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sms.model.PersonMasterIndex" >
+    insert into hc_person_master_index (identity_no, create_hco_code, create_hco_name, 
+      create_user_name, create_date_time, status, 
+      credit_flag, credit_ammount, name, 
+      name_pinyin, sex, date_of_birth, 
+      country, nation, marriage_status_name, 
+      marriage_status_code, education_level_code, 
+      education_level_name, political_status_code, 
+      political_status_name, job_type_code, job_status_code, 
+      job_type_name, job_status_name, phone_number, 
+      mobile_number, contact_name, contact_phone, 
+      contact_mobile, native_place, birth_place, 
+      home_address, blood_type_abo, blood_type_rh, 
+      child_birth, vaccination_history, allergy_history, 
+      allergy_desc, past_history, past_desc, 
+      genetic_history, iving_habits, hypertension, 
+      hypertension_desc, tumor, tumor_desc, 
+      asthma, heart_dease, cardio_cerebrovascular_disease, 
+      epilepsy, psychosis, psychosis_desc, 
+      coagulopathy, diabetes, diabetes_desc, 
+      glaucoma, dialysis, transplant, 
+      organ_deficiency, removable_prosthesis, pacemaker, 
+      medical_warnning, primary_hco_code, primary_hco_name, 
+      update_user_name, update_date_time)
+    values (#{identityNo,jdbcType=VARCHAR}, #{createHcoCode,jdbcType=VARCHAR}, #{createHcoName,jdbcType=VARCHAR}, 
+      #{createUserName,jdbcType=VARCHAR}, #{createDateTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, 
+      #{creditFlag,jdbcType=INTEGER}, #{creditAmmount,jdbcType=DECIMAL}, #{name,jdbcType=VARCHAR}, 
+      #{namePinyin,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{dateOfBirth,jdbcType=TIMESTAMP}, 
+      #{country,jdbcType=VARCHAR}, #{nation,jdbcType=VARCHAR}, #{marriageStatusName,jdbcType=VARCHAR}, 
+      #{marriageStatusCode,jdbcType=VARCHAR}, #{educationLevelCode,jdbcType=VARCHAR}, 
+      #{educationLevelName,jdbcType=VARCHAR}, #{politicalStatusCode,jdbcType=VARCHAR}, 
+      #{politicalStatusName,jdbcType=VARCHAR}, #{jobTypeCode,jdbcType=VARCHAR}, #{jobStatusCode,jdbcType=VARCHAR}, 
+      #{jobTypeName,jdbcType=VARCHAR}, #{jobStatusName,jdbcType=VARCHAR}, #{phoneNumber,jdbcType=VARCHAR}, 
+      #{mobileNumber,jdbcType=VARCHAR}, #{contactName,jdbcType=VARCHAR}, #{contactPhone,jdbcType=VARCHAR}, 
+      #{contactMobile,jdbcType=VARCHAR}, #{nativePlace,jdbcType=VARCHAR}, #{birthPlace,jdbcType=VARCHAR}, 
+      #{homeAddress,jdbcType=VARCHAR}, #{bloodTypeAbo,jdbcType=VARCHAR}, #{bloodTypeRh,jdbcType=VARCHAR}, 
+      #{childBirth,jdbcType=INTEGER}, #{vaccinationHistory,jdbcType=INTEGER}, #{allergyHistory,jdbcType=INTEGER}, 
+      #{allergyDesc,jdbcType=VARCHAR}, #{pastHistory,jdbcType=INTEGER}, #{pastDesc,jdbcType=VARCHAR}, 
+      #{geneticHistory,jdbcType=INTEGER}, #{ivingHabits,jdbcType=INTEGER}, #{hypertension,jdbcType=INTEGER}, 
+      #{hypertensionDesc,jdbcType=VARCHAR}, #{tumor,jdbcType=INTEGER}, #{tumorDesc,jdbcType=VARCHAR}, 
+      #{asthma,jdbcType=INTEGER}, #{heartDease,jdbcType=INTEGER}, #{cardioCerebrovascularDisease,jdbcType=INTEGER}, 
+      #{epilepsy,jdbcType=INTEGER}, #{psychosis,jdbcType=INTEGER}, #{psychosisDesc,jdbcType=VARCHAR}, 
+      #{coagulopathy,jdbcType=INTEGER}, #{diabetes,jdbcType=INTEGER}, #{diabetesDesc,jdbcType=VARCHAR}, 
+      #{glaucoma,jdbcType=INTEGER}, #{dialysis,jdbcType=INTEGER}, #{transplant,jdbcType=INTEGER}, 
+      #{organDeficiency,jdbcType=INTEGER}, #{removableProsthesis,jdbcType=INTEGER}, #{pacemaker,jdbcType=INTEGER}, 
+      #{medicalWarnning,jdbcType=VARCHAR}, #{primaryHcoCode,jdbcType=VARCHAR}, #{primaryHcoName,jdbcType=VARCHAR}, 
+      #{updateUserName,jdbcType=VARCHAR}, #{updateDateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sms.model.PersonMasterIndex" >
+    insert into hc_person_master_index
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="identityNo != null" >
+        identity_no,
+      </if>
+      <if test="createHcoCode != null" >
+        create_hco_code,
+      </if>
+      <if test="createHcoName != null" >
+        create_hco_name,
+      </if>
+      <if test="createUserName != null" >
+        create_user_name,
+      </if>
+      <if test="createDateTime != null" >
+        create_date_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="creditFlag != null" >
+        credit_flag,
+      </if>
+      <if test="creditAmmount != null" >
+        credit_ammount,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="namePinyin != null" >
+        name_pinyin,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="dateOfBirth != null" >
+        date_of_birth,
+      </if>
+      <if test="country != null" >
+        country,
+      </if>
+      <if test="nation != null" >
+        nation,
+      </if>
+      <if test="marriageStatusName != null" >
+        marriage_status_name,
+      </if>
+      <if test="marriageStatusCode != null" >
+        marriage_status_code,
+      </if>
+      <if test="educationLevelCode != null" >
+        education_level_code,
+      </if>
+      <if test="educationLevelName != null" >
+        education_level_name,
+      </if>
+      <if test="politicalStatusCode != null" >
+        political_status_code,
+      </if>
+      <if test="politicalStatusName != null" >
+        political_status_name,
+      </if>
+      <if test="jobTypeCode != null" >
+        job_type_code,
+      </if>
+      <if test="jobStatusCode != null" >
+        job_status_code,
+      </if>
+      <if test="jobTypeName != null" >
+        job_type_name,
+      </if>
+      <if test="jobStatusName != null" >
+        job_status_name,
+      </if>
+      <if test="phoneNumber != null" >
+        phone_number,
+      </if>
+      <if test="mobileNumber != null" >
+        mobile_number,
+      </if>
+      <if test="contactName != null" >
+        contact_name,
+      </if>
+      <if test="contactPhone != null" >
+        contact_phone,
+      </if>
+      <if test="contactMobile != null" >
+        contact_mobile,
+      </if>
+      <if test="nativePlace != null" >
+        native_place,
+      </if>
+      <if test="birthPlace != null" >
+        birth_place,
+      </if>
+      <if test="homeAddress != null" >
+        home_address,
+      </if>
+      <if test="bloodTypeAbo != null" >
+        blood_type_abo,
+      </if>
+      <if test="bloodTypeRh != null" >
+        blood_type_rh,
+      </if>
+      <if test="childBirth != null" >
+        child_birth,
+      </if>
+      <if test="vaccinationHistory != null" >
+        vaccination_history,
+      </if>
+      <if test="allergyHistory != null" >
+        allergy_history,
+      </if>
+      <if test="allergyDesc != null" >
+        allergy_desc,
+      </if>
+      <if test="pastHistory != null" >
+        past_history,
+      </if>
+      <if test="pastDesc != null" >
+        past_desc,
+      </if>
+      <if test="geneticHistory != null" >
+        genetic_history,
+      </if>
+      <if test="ivingHabits != null" >
+        iving_habits,
+      </if>
+      <if test="hypertension != null" >
+        hypertension,
+      </if>
+      <if test="hypertensionDesc != null" >
+        hypertension_desc,
+      </if>
+      <if test="tumor != null" >
+        tumor,
+      </if>
+      <if test="tumorDesc != null" >
+        tumor_desc,
+      </if>
+      <if test="asthma != null" >
+        asthma,
+      </if>
+      <if test="heartDease != null" >
+        heart_dease,
+      </if>
+      <if test="cardioCerebrovascularDisease != null" >
+        cardio_cerebrovascular_disease,
+      </if>
+      <if test="epilepsy != null" >
+        epilepsy,
+      </if>
+      <if test="psychosis != null" >
+        psychosis,
+      </if>
+      <if test="psychosisDesc != null" >
+        psychosis_desc,
+      </if>
+      <if test="coagulopathy != null" >
+        coagulopathy,
+      </if>
+      <if test="diabetes != null" >
+        diabetes,
+      </if>
+      <if test="diabetesDesc != null" >
+        diabetes_desc,
+      </if>
+      <if test="glaucoma != null" >
+        glaucoma,
+      </if>
+      <if test="dialysis != null" >
+        dialysis,
+      </if>
+      <if test="transplant != null" >
+        transplant,
+      </if>
+      <if test="organDeficiency != null" >
+        organ_deficiency,
+      </if>
+      <if test="removableProsthesis != null" >
+        removable_prosthesis,
+      </if>
+      <if test="pacemaker != null" >
+        pacemaker,
+      </if>
+      <if test="medicalWarnning != null" >
+        medical_warnning,
+      </if>
+      <if test="primaryHcoCode != null" >
+        primary_hco_code,
+      </if>
+      <if test="primaryHcoName != null" >
+        primary_hco_name,
+      </if>
+      <if test="updateUserName != null" >
+        update_user_name,
+      </if>
+      <if test="updateDateTime != null" >
+        update_date_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="identityNo != null" >
+        #{identityNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createHcoCode != null" >
+        #{createHcoCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createHcoName != null" >
+        #{createHcoName,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null" >
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDateTime != null" >
+        #{createDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="creditFlag != null" >
+        #{creditFlag,jdbcType=INTEGER},
+      </if>
+      <if test="creditAmmount != null" >
+        #{creditAmmount,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="namePinyin != null" >
+        #{namePinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="dateOfBirth != null" >
+        #{dateOfBirth,jdbcType=TIMESTAMP},
+      </if>
+      <if test="country != null" >
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null" >
+        #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="marriageStatusName != null" >
+        #{marriageStatusName,jdbcType=VARCHAR},
+      </if>
+      <if test="marriageStatusCode != null" >
+        #{marriageStatusCode,jdbcType=VARCHAR},
+      </if>
+      <if test="educationLevelCode != null" >
+        #{educationLevelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="educationLevelName != null" >
+        #{educationLevelName,jdbcType=VARCHAR},
+      </if>
+      <if test="politicalStatusCode != null" >
+        #{politicalStatusCode,jdbcType=VARCHAR},
+      </if>
+      <if test="politicalStatusName != null" >
+        #{politicalStatusName,jdbcType=VARCHAR},
+      </if>
+      <if test="jobTypeCode != null" >
+        #{jobTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="jobStatusCode != null" >
+        #{jobStatusCode,jdbcType=VARCHAR},
+      </if>
+      <if test="jobTypeName != null" >
+        #{jobTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="jobStatusName != null" >
+        #{jobStatusName,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null" >
+        #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileNumber != null" >
+        #{mobileNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null" >
+        #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null" >
+        #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="contactMobile != null" >
+        #{contactMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="nativePlace != null" >
+        #{nativePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="birthPlace != null" >
+        #{birthPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="homeAddress != null" >
+        #{homeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodTypeAbo != null" >
+        #{bloodTypeAbo,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodTypeRh != null" >
+        #{bloodTypeRh,jdbcType=VARCHAR},
+      </if>
+      <if test="childBirth != null" >
+        #{childBirth,jdbcType=INTEGER},
+      </if>
+      <if test="vaccinationHistory != null" >
+        #{vaccinationHistory,jdbcType=INTEGER},
+      </if>
+      <if test="allergyHistory != null" >
+        #{allergyHistory,jdbcType=INTEGER},
+      </if>
+      <if test="allergyDesc != null" >
+        #{allergyDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="pastHistory != null" >
+        #{pastHistory,jdbcType=INTEGER},
+      </if>
+      <if test="pastDesc != null" >
+        #{pastDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="geneticHistory != null" >
+        #{geneticHistory,jdbcType=INTEGER},
+      </if>
+      <if test="ivingHabits != null" >
+        #{ivingHabits,jdbcType=INTEGER},
+      </if>
+      <if test="hypertension != null" >
+        #{hypertension,jdbcType=INTEGER},
+      </if>
+      <if test="hypertensionDesc != null" >
+        #{hypertensionDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="tumor != null" >
+        #{tumor,jdbcType=INTEGER},
+      </if>
+      <if test="tumorDesc != null" >
+        #{tumorDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="asthma != null" >
+        #{asthma,jdbcType=INTEGER},
+      </if>
+      <if test="heartDease != null" >
+        #{heartDease,jdbcType=INTEGER},
+      </if>
+      <if test="cardioCerebrovascularDisease != null" >
+        #{cardioCerebrovascularDisease,jdbcType=INTEGER},
+      </if>
+      <if test="epilepsy != null" >
+        #{epilepsy,jdbcType=INTEGER},
+      </if>
+      <if test="psychosis != null" >
+        #{psychosis,jdbcType=INTEGER},
+      </if>
+      <if test="psychosisDesc != null" >
+        #{psychosisDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="coagulopathy != null" >
+        #{coagulopathy,jdbcType=INTEGER},
+      </if>
+      <if test="diabetes != null" >
+        #{diabetes,jdbcType=INTEGER},
+      </if>
+      <if test="diabetesDesc != null" >
+        #{diabetesDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="glaucoma != null" >
+        #{glaucoma,jdbcType=INTEGER},
+      </if>
+      <if test="dialysis != null" >
+        #{dialysis,jdbcType=INTEGER},
+      </if>
+      <if test="transplant != null" >
+        #{transplant,jdbcType=INTEGER},
+      </if>
+      <if test="organDeficiency != null" >
+        #{organDeficiency,jdbcType=INTEGER},
+      </if>
+      <if test="removableProsthesis != null" >
+        #{removableProsthesis,jdbcType=INTEGER},
+      </if>
+      <if test="pacemaker != null" >
+        #{pacemaker,jdbcType=INTEGER},
+      </if>
+      <if test="medicalWarnning != null" >
+        #{medicalWarnning,jdbcType=VARCHAR},
+      </if>
+      <if test="primaryHcoCode != null" >
+        #{primaryHcoCode,jdbcType=VARCHAR},
+      </if>
+      <if test="primaryHcoName != null" >
+        #{primaryHcoName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserName != null" >
+        #{updateUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDateTime != null" >
+        #{updateDateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sms.model.PersonMasterIndex" >
+    update hc_person_master_index
+    <set >
+      <if test="createHcoCode != null" >
+        create_hco_code = #{createHcoCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createHcoName != null" >
+        create_hco_name = #{createHcoName,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null" >
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDateTime != null" >
+        create_date_time = #{createDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="creditFlag != null" >
+        credit_flag = #{creditFlag,jdbcType=INTEGER},
+      </if>
+      <if test="creditAmmount != null" >
+        credit_ammount = #{creditAmmount,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="namePinyin != null" >
+        name_pinyin = #{namePinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="dateOfBirth != null" >
+        date_of_birth = #{dateOfBirth,jdbcType=TIMESTAMP},
+      </if>
+      <if test="country != null" >
+        country = #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null" >
+        nation = #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="marriageStatusName != null" >
+        marriage_status_name = #{marriageStatusName,jdbcType=VARCHAR},
+      </if>
+      <if test="marriageStatusCode != null" >
+        marriage_status_code = #{marriageStatusCode,jdbcType=VARCHAR},
+      </if>
+      <if test="educationLevelCode != null" >
+        education_level_code = #{educationLevelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="educationLevelName != null" >
+        education_level_name = #{educationLevelName,jdbcType=VARCHAR},
+      </if>
+      <if test="politicalStatusCode != null" >
+        political_status_code = #{politicalStatusCode,jdbcType=VARCHAR},
+      </if>
+      <if test="politicalStatusName != null" >
+        political_status_name = #{politicalStatusName,jdbcType=VARCHAR},
+      </if>
+      <if test="jobTypeCode != null" >
+        job_type_code = #{jobTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="jobStatusCode != null" >
+        job_status_code = #{jobStatusCode,jdbcType=VARCHAR},
+      </if>
+      <if test="jobTypeName != null" >
+        job_type_name = #{jobTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="jobStatusName != null" >
+        job_status_name = #{jobStatusName,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null" >
+        phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileNumber != null" >
+        mobile_number = #{mobileNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null" >
+        contact_name = #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null" >
+        contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="contactMobile != null" >
+        contact_mobile = #{contactMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="nativePlace != null" >
+        native_place = #{nativePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="birthPlace != null" >
+        birth_place = #{birthPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="homeAddress != null" >
+        home_address = #{homeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodTypeAbo != null" >
+        blood_type_abo = #{bloodTypeAbo,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodTypeRh != null" >
+        blood_type_rh = #{bloodTypeRh,jdbcType=VARCHAR},
+      </if>
+      <if test="childBirth != null" >
+        child_birth = #{childBirth,jdbcType=INTEGER},
+      </if>
+      <if test="vaccinationHistory != null" >
+        vaccination_history = #{vaccinationHistory,jdbcType=INTEGER},
+      </if>
+      <if test="allergyHistory != null" >
+        allergy_history = #{allergyHistory,jdbcType=INTEGER},
+      </if>
+      <if test="allergyDesc != null" >
+        allergy_desc = #{allergyDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="pastHistory != null" >
+        past_history = #{pastHistory,jdbcType=INTEGER},
+      </if>
+      <if test="pastDesc != null" >
+        past_desc = #{pastDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="geneticHistory != null" >
+        genetic_history = #{geneticHistory,jdbcType=INTEGER},
+      </if>
+      <if test="ivingHabits != null" >
+        iving_habits = #{ivingHabits,jdbcType=INTEGER},
+      </if>
+      <if test="hypertension != null" >
+        hypertension = #{hypertension,jdbcType=INTEGER},
+      </if>
+      <if test="hypertensionDesc != null" >
+        hypertension_desc = #{hypertensionDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="tumor != null" >
+        tumor = #{tumor,jdbcType=INTEGER},
+      </if>
+      <if test="tumorDesc != null" >
+        tumor_desc = #{tumorDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="asthma != null" >
+        asthma = #{asthma,jdbcType=INTEGER},
+      </if>
+      <if test="heartDease != null" >
+        heart_dease = #{heartDease,jdbcType=INTEGER},
+      </if>
+      <if test="cardioCerebrovascularDisease != null" >
+        cardio_cerebrovascular_disease = #{cardioCerebrovascularDisease,jdbcType=INTEGER},
+      </if>
+      <if test="epilepsy != null" >
+        epilepsy = #{epilepsy,jdbcType=INTEGER},
+      </if>
+      <if test="psychosis != null" >
+        psychosis = #{psychosis,jdbcType=INTEGER},
+      </if>
+      <if test="psychosisDesc != null" >
+        psychosis_desc = #{psychosisDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="coagulopathy != null" >
+        coagulopathy = #{coagulopathy,jdbcType=INTEGER},
+      </if>
+      <if test="diabetes != null" >
+        diabetes = #{diabetes,jdbcType=INTEGER},
+      </if>
+      <if test="diabetesDesc != null" >
+        diabetes_desc = #{diabetesDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="glaucoma != null" >
+        glaucoma = #{glaucoma,jdbcType=INTEGER},
+      </if>
+      <if test="dialysis != null" >
+        dialysis = #{dialysis,jdbcType=INTEGER},
+      </if>
+      <if test="transplant != null" >
+        transplant = #{transplant,jdbcType=INTEGER},
+      </if>
+      <if test="organDeficiency != null" >
+        organ_deficiency = #{organDeficiency,jdbcType=INTEGER},
+      </if>
+      <if test="removableProsthesis != null" >
+        removable_prosthesis = #{removableProsthesis,jdbcType=INTEGER},
+      </if>
+      <if test="pacemaker != null" >
+        pacemaker = #{pacemaker,jdbcType=INTEGER},
+      </if>
+      <if test="medicalWarnning != null" >
+        medical_warnning = #{medicalWarnning,jdbcType=VARCHAR},
+      </if>
+      <if test="primaryHcoCode != null" >
+        primary_hco_code = #{primaryHcoCode,jdbcType=VARCHAR},
+      </if>
+      <if test="primaryHcoName != null" >
+        primary_hco_name = #{primaryHcoName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserName != null" >
+        update_user_name = #{updateUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDateTime != null" >
+        update_date_time = #{updateDateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where identity_no = #{identityNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sms.model.PersonMasterIndex" >
+    update hc_person_master_index
+    set create_hco_code = #{createHcoCode,jdbcType=VARCHAR},
+      create_hco_name = #{createHcoName,jdbcType=VARCHAR},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      create_date_time = #{createDateTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      credit_flag = #{creditFlag,jdbcType=INTEGER},
+      credit_ammount = #{creditAmmount,jdbcType=DECIMAL},
+      name = #{name,jdbcType=VARCHAR},
+      name_pinyin = #{namePinyin,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      date_of_birth = #{dateOfBirth,jdbcType=TIMESTAMP},
+      country = #{country,jdbcType=VARCHAR},
+      nation = #{nation,jdbcType=VARCHAR},
+      marriage_status_name = #{marriageStatusName,jdbcType=VARCHAR},
+      marriage_status_code = #{marriageStatusCode,jdbcType=VARCHAR},
+      education_level_code = #{educationLevelCode,jdbcType=VARCHAR},
+      education_level_name = #{educationLevelName,jdbcType=VARCHAR},
+      political_status_code = #{politicalStatusCode,jdbcType=VARCHAR},
+      political_status_name = #{politicalStatusName,jdbcType=VARCHAR},
+      job_type_code = #{jobTypeCode,jdbcType=VARCHAR},
+      job_status_code = #{jobStatusCode,jdbcType=VARCHAR},
+      job_type_name = #{jobTypeName,jdbcType=VARCHAR},
+      job_status_name = #{jobStatusName,jdbcType=VARCHAR},
+      phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      mobile_number = #{mobileNumber,jdbcType=VARCHAR},
+      contact_name = #{contactName,jdbcType=VARCHAR},
+      contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      contact_mobile = #{contactMobile,jdbcType=VARCHAR},
+      native_place = #{nativePlace,jdbcType=VARCHAR},
+      birth_place = #{birthPlace,jdbcType=VARCHAR},
+      home_address = #{homeAddress,jdbcType=VARCHAR},
+      blood_type_abo = #{bloodTypeAbo,jdbcType=VARCHAR},
+      blood_type_rh = #{bloodTypeRh,jdbcType=VARCHAR},
+      child_birth = #{childBirth,jdbcType=INTEGER},
+      vaccination_history = #{vaccinationHistory,jdbcType=INTEGER},
+      allergy_history = #{allergyHistory,jdbcType=INTEGER},
+      allergy_desc = #{allergyDesc,jdbcType=VARCHAR},
+      past_history = #{pastHistory,jdbcType=INTEGER},
+      past_desc = #{pastDesc,jdbcType=VARCHAR},
+      genetic_history = #{geneticHistory,jdbcType=INTEGER},
+      iving_habits = #{ivingHabits,jdbcType=INTEGER},
+      hypertension = #{hypertension,jdbcType=INTEGER},
+      hypertension_desc = #{hypertensionDesc,jdbcType=VARCHAR},
+      tumor = #{tumor,jdbcType=INTEGER},
+      tumor_desc = #{tumorDesc,jdbcType=VARCHAR},
+      asthma = #{asthma,jdbcType=INTEGER},
+      heart_dease = #{heartDease,jdbcType=INTEGER},
+      cardio_cerebrovascular_disease = #{cardioCerebrovascularDisease,jdbcType=INTEGER},
+      epilepsy = #{epilepsy,jdbcType=INTEGER},
+      psychosis = #{psychosis,jdbcType=INTEGER},
+      psychosis_desc = #{psychosisDesc,jdbcType=VARCHAR},
+      coagulopathy = #{coagulopathy,jdbcType=INTEGER},
+      diabetes = #{diabetes,jdbcType=INTEGER},
+      diabetes_desc = #{diabetesDesc,jdbcType=VARCHAR},
+      glaucoma = #{glaucoma,jdbcType=INTEGER},
+      dialysis = #{dialysis,jdbcType=INTEGER},
+      transplant = #{transplant,jdbcType=INTEGER},
+      organ_deficiency = #{organDeficiency,jdbcType=INTEGER},
+      removable_prosthesis = #{removableProsthesis,jdbcType=INTEGER},
+      pacemaker = #{pacemaker,jdbcType=INTEGER},
+      medical_warnning = #{medicalWarnning,jdbcType=VARCHAR},
+      primary_hco_code = #{primaryHcoCode,jdbcType=VARCHAR},
+      primary_hco_name = #{primaryHcoName,jdbcType=VARCHAR},
+      update_user_name = #{updateUserName,jdbcType=VARCHAR},
+      update_date_time = #{updateDateTime,jdbcType=TIMESTAMP}
+    where identity_no = #{identityNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

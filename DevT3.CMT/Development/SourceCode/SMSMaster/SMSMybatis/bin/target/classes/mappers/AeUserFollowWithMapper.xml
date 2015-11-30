@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sms.dao.AeUserFollowWithDao" >
+  <resultMap id="BaseResultMap" type="com.sms.model.AeUserFollowWith" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="EVENT_ID" property="eventId" jdbcType="INTEGER" />
+    <result column="PERSON_ID" property="personId" jdbcType="VARCHAR" />
+    <result column="FOLLOW_WITH_START_DATE_TIME" property="followWithStartDateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, EVENT_ID, PERSON_ID, FOLLOW_WITH_START_DATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from csr_ae_user_follow_with
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from csr_ae_user_follow_with
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sms.model.AeUserFollowWith" >
+    insert into csr_ae_user_follow_with (ID, EVENT_ID, PERSON_ID, 
+      FOLLOW_WITH_START_DATE_TIME)
+    values (#{id,jdbcType=INTEGER}, #{eventId,jdbcType=INTEGER}, #{personId,jdbcType=VARCHAR}, 
+      #{followWithStartDateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sms.model.AeUserFollowWith" >
+    insert into csr_ae_user_follow_with
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="eventId != null" >
+        EVENT_ID,
+      </if>
+      <if test="personId != null" >
+        PERSON_ID,
+      </if>
+      <if test="followWithStartDateTime != null" >
+        FOLLOW_WITH_START_DATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="eventId != null" >
+        #{eventId,jdbcType=INTEGER},
+      </if>
+      <if test="personId != null" >
+        #{personId,jdbcType=VARCHAR},
+      </if>
+      <if test="followWithStartDateTime != null" >
+        #{followWithStartDateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sms.model.AeUserFollowWith" >
+    update csr_ae_user_follow_with
+    <set >
+      <if test="eventId != null" >
+        EVENT_ID = #{eventId,jdbcType=INTEGER},
+      </if>
+      <if test="personId != null" >
+        PERSON_ID = #{personId,jdbcType=VARCHAR},
+      </if>
+      <if test="followWithStartDateTime != null" >
+        FOLLOW_WITH_START_DATE_TIME = #{followWithStartDateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sms.model.AeUserFollowWith" >
+    update csr_ae_user_follow_with
+    set EVENT_ID = #{eventId,jdbcType=INTEGER},
+      PERSON_ID = #{personId,jdbcType=VARCHAR},
+      FOLLOW_WITH_START_DATE_TIME = #{followWithStartDateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

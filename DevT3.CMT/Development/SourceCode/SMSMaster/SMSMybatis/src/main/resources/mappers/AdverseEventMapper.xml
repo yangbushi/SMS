@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sms.dao.AdverseEventDao" >
+  <resultMap id="BaseResultMap" type="com.sms.model.AdverseEvent" >
+    <id column="EVENT_ID" property="eventId" jdbcType="INTEGER" />
+    <result column="EVENT_SOURCE_CODE" property="eventSourceCode" jdbcType="VARCHAR" />
+    <result column="EVENT_SOURCE_NAME" property="eventSourceName" jdbcType="VARCHAR" />
+    <result column="PLAN_ID" property="planId" jdbcType="INTEGER" />
+    <result column="RECORD_ID" property="recordId" jdbcType="INTEGER" />
+    <result column="IDENTITY_NO" property="identityNo" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="CALLED_FROM_NUM" property="calledFromNum" jdbcType="VARCHAR" />
+    <result column="MOBILE_PHONE_NUM" property="mobilePhoneNum" jdbcType="VARCHAR" />
+    <result column="CONTACT_ADDRESS" property="contactAddress" jdbcType="VARCHAR" />
+    <result column="VISIT_ID" property="visitId" jdbcType="VARCHAR" />
+    <result column="VISIT_TYPE" property="visitType" jdbcType="VARCHAR" />
+    <result column="VISIT_START_DATE_TIME" property="visitStartDateTime" jdbcType="TIMESTAMP" />
+    <result column="VISIT_ORG_CODE" property="visitOrgCode" jdbcType="VARCHAR" />
+    <result column="VISIT_ORG_NAME" property="visitOrgName" jdbcType="VARCHAR" />
+    <result column="HIS_DEPT_CODE" property="hisDeptCode" jdbcType="VARCHAR" />
+    <result column="HIS_DEPT_NAME" property="hisDeptName" jdbcType="VARCHAR" />
+    <result column="DOCTOR_CODE" property="doctorCode" jdbcType="VARCHAR" />
+    <result column="DOCTOR_NAME" property="doctorName" jdbcType="VARCHAR" />
+    <result column="REFLACT_CONTENT" property="reflactContent" jdbcType="VARCHAR" />
+    <result column="REFLACT_DATE_TIME" property="reflactDateTime" jdbcType="TIMESTAMP" />
+    <result column="NEED_SECURITY_PROCESS" property="needSecurityProcess" jdbcType="INTEGER" />
+    <result column="REFLACT_FOR_CODE" property="reflactForCode" jdbcType="VARCHAR" />
+    <result column="REFLACT_FOR_NAME" property="reflactForName" jdbcType="VARCHAR" />
+    <result column="REFLACT_CONTENT_CLASS_CODE" property="reflactContentClassCode" jdbcType="VARCHAR" />
+    <result column="REFLACT_CONTENT_CLASS_NAME" property="reflactContentClassName" jdbcType="VARCHAR" />
+    <result column="ACCEPT_ORG_CODE" property="acceptOrgCode" jdbcType="VARCHAR" />
+    <result column="ACCEPT_ORG_NAME" property="acceptOrgName" jdbcType="VARCHAR" />
+    <result column="ACCEPTOR_ID" property="acceptorId" jdbcType="VARCHAR" />
+    <result column="ACCEPTOR_NAME" property="acceptorName" jdbcType="VARCHAR" />
+    <result column="ACCEPT_DATE_TIME" property="acceptDateTime" jdbcType="TIMESTAMP" />
+    <result column="HANDLE_ORG_CODE" property="handleOrgCode" jdbcType="VARCHAR" />
+    <result column="HANDLE_ORG_NAME" property="handleOrgName" jdbcType="VARCHAR" />
+    <result column="HANDLE_CLOSING_DATE" property="handleClosingDate" jdbcType="TIMESTAMP" />
+    <result column="ASSIGN_ORG_CODE" property="assignOrgCode" jdbcType="VARCHAR" />
+    <result column="ASSIGN_ORG_NAME" property="assignOrgName" jdbcType="VARCHAR" />
+    <result column="ASSIGN_PERSON_ID" property="assignPersonId" jdbcType="VARCHAR" />
+    <result column="ASSIGN_PERSON_NAME" property="assignPersonName" jdbcType="VARCHAR" />
+    <result column="ASSIGN_DATE_TIME" property="assignDateTime" jdbcType="TIMESTAMP" />
+    <result column="HANDLE_RESULT" property="handleResult" jdbcType="VARCHAR" />
+    <result column="FEEDBACK_RESULT" property="feedbackResult" jdbcType="VARCHAR" />
+    <result column="RETURN_VISIT_RESULT" property="returnVisitResult" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    EVENT_ID, EVENT_SOURCE_CODE, EVENT_SOURCE_NAME, PLAN_ID, RECORD_ID, IDENTITY_NO, 
+    NAME, CALLED_FROM_NUM, MOBILE_PHONE_NUM, CONTACT_ADDRESS, VISIT_ID, VISIT_TYPE, VISIT_START_DATE_TIME, 
+    VISIT_ORG_CODE, VISIT_ORG_NAME, HIS_DEPT_CODE, HIS_DEPT_NAME, DOCTOR_CODE, DOCTOR_NAME, 
+    REFLACT_CONTENT, REFLACT_DATE_TIME, NEED_SECURITY_PROCESS, REFLACT_FOR_CODE, REFLACT_FOR_NAME, 
+    REFLACT_CONTENT_CLASS_CODE, REFLACT_CONTENT_CLASS_NAME, ACCEPT_ORG_CODE, ACCEPT_ORG_NAME, 
+    ACCEPTOR_ID, ACCEPTOR_NAME, ACCEPT_DATE_TIME, HANDLE_ORG_CODE, HANDLE_ORG_NAME, HANDLE_CLOSING_DATE, 
+    ASSIGN_ORG_CODE, ASSIGN_ORG_NAME, ASSIGN_PERSON_ID, ASSIGN_PERSON_NAME, ASSIGN_DATE_TIME, 
+    HANDLE_RESULT, FEEDBACK_RESULT, RETURN_VISIT_RESULT, STATUS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from csr_adverse_event
+    where EVENT_ID = #{eventId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from csr_adverse_event
+    where EVENT_ID = #{eventId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sms.model.AdverseEvent" >
+    insert into csr_adverse_event (EVENT_ID, EVENT_SOURCE_CODE, EVENT_SOURCE_NAME, 
+      PLAN_ID, RECORD_ID, IDENTITY_NO, 
+      NAME, CALLED_FROM_NUM, MOBILE_PHONE_NUM, 
+      CONTACT_ADDRESS, VISIT_ID, VISIT_TYPE, 
+      VISIT_START_DATE_TIME, VISIT_ORG_CODE, VISIT_ORG_NAME, 
+      HIS_DEPT_CODE, HIS_DEPT_NAME, DOCTOR_CODE, 
+      DOCTOR_NAME, REFLACT_CONTENT, REFLACT_DATE_TIME, 
+      NEED_SECURITY_PROCESS, REFLACT_FOR_CODE, REFLACT_FOR_NAME, 
+      REFLACT_CONTENT_CLASS_CODE, REFLACT_CONTENT_CLASS_NAME, 
+      ACCEPT_ORG_CODE, ACCEPT_ORG_NAME, ACCEPTOR_ID, 
+      ACCEPTOR_NAME, ACCEPT_DATE_TIME, HANDLE_ORG_CODE, 
+      HANDLE_ORG_NAME, HANDLE_CLOSING_DATE, ASSIGN_ORG_CODE, 
+      ASSIGN_ORG_NAME, ASSIGN_PERSON_ID, ASSIGN_PERSON_NAME, 
+      ASSIGN_DATE_TIME, HANDLE_RESULT, FEEDBACK_RESULT, 
+      RETURN_VISIT_RESULT, STATUS)
+    values (#{eventId,jdbcType=INTEGER}, #{eventSourceCode,jdbcType=VARCHAR}, #{eventSourceName,jdbcType=VARCHAR}, 
+      #{planId,jdbcType=INTEGER}, #{recordId,jdbcType=INTEGER}, #{identityNo,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{calledFromNum,jdbcType=VARCHAR}, #{mobilePhoneNum,jdbcType=VARCHAR}, 
+      #{contactAddress,jdbcType=VARCHAR}, #{visitId,jdbcType=VARCHAR}, #{visitType,jdbcType=VARCHAR}, 
+      #{visitStartDateTime,jdbcType=TIMESTAMP}, #{visitOrgCode,jdbcType=VARCHAR}, #{visitOrgName,jdbcType=VARCHAR}, 
+      #{hisDeptCode,jdbcType=VARCHAR}, #{hisDeptName,jdbcType=VARCHAR}, #{doctorCode,jdbcType=VARCHAR}, 
+      #{doctorName,jdbcType=VARCHAR}, #{reflactContent,jdbcType=VARCHAR}, #{reflactDateTime,jdbcType=TIMESTAMP}, 
+      #{needSecurityProcess,jdbcType=INTEGER}, #{reflactForCode,jdbcType=VARCHAR}, #{reflactForName,jdbcType=VARCHAR}, 
+      #{reflactContentClassCode,jdbcType=VARCHAR}, #{reflactContentClassName,jdbcType=VARCHAR}, 
+      #{acceptOrgCode,jdbcType=VARCHAR}, #{acceptOrgName,jdbcType=VARCHAR}, #{acceptorId,jdbcType=VARCHAR}, 
+      #{acceptorName,jdbcType=VARCHAR}, #{acceptDateTime,jdbcType=TIMESTAMP}, #{handleOrgCode,jdbcType=VARCHAR}, 
+      #{handleOrgName,jdbcType=VARCHAR}, #{handleClosingDate,jdbcType=TIMESTAMP}, #{assignOrgCode,jdbcType=VARCHAR}, 
+      #{assignOrgName,jdbcType=VARCHAR}, #{assignPersonId,jdbcType=VARCHAR}, #{assignPersonName,jdbcType=VARCHAR}, 
+      #{assignDateTime,jdbcType=TIMESTAMP}, #{handleResult,jdbcType=VARCHAR}, #{feedbackResult,jdbcType=VARCHAR}, 
+      #{returnVisitResult,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sms.model.AdverseEvent" >
+    insert into csr_adverse_event
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="eventId != null" >
+        EVENT_ID,
+      </if>
+      <if test="eventSourceCode != null" >
+        EVENT_SOURCE_CODE,
+      </if>
+      <if test="eventSourceName != null" >
+        EVENT_SOURCE_NAME,
+      </if>
+      <if test="planId != null" >
+        PLAN_ID,
+      </if>
+      <if test="recordId != null" >
+        RECORD_ID,
+      </if>
+      <if test="identityNo != null" >
+        IDENTITY_NO,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="calledFromNum != null" >
+        CALLED_FROM_NUM,
+      </if>
+      <if test="mobilePhoneNum != null" >
+        MOBILE_PHONE_NUM,
+      </if>
+      <if test="contactAddress != null" >
+        CONTACT_ADDRESS,
+      </if>
+      <if test="visitId != null" >
+        VISIT_ID,
+      </if>
+      <if test="visitType != null" >
+        VISIT_TYPE,
+      </if>
+      <if test="visitStartDateTime != null" >
+        VISIT_START_DATE_TIME,
+      </if>
+      <if test="visitOrgCode != null" >
+        VISIT_ORG_CODE,
+      </if>
+      <if test="visitOrgName != null" >
+        VISIT_ORG_NAME,
+      </if>
+      <if test="hisDeptCode != null" >
+        HIS_DEPT_CODE,
+      </if>
+      <if test="hisDeptName != null" >
+        HIS_DEPT_NAME,
+      </if>
+      <if test="doctorCode != null" >
+        DOCTOR_CODE,
+      </if>
+      <if test="doctorName != null" >
+        DOCTOR_NAME,
+      </if>
+      <if test="reflactContent != null" >
+        REFLACT_CONTENT,
+      </if>
+      <if test="reflactDateTime != null" >
+        REFLACT_DATE_TIME,
+      </if>
+      <if test="needSecurityProcess != null" >
+        NEED_SECURITY_PROCESS,
+      </if>
+      <if test="reflactForCode != null" >
+        REFLACT_FOR_CODE,
+      </if>
+      <if test="reflactForName != null" >
+        REFLACT_FOR_NAME,
+      </if>
+      <if test="reflactContentClassCode != null" >
+        REFLACT_CONTENT_CLASS_CODE,
+      </if>
+      <if test="reflactContentClassName != null" >
+        REFLACT_CONTENT_CLASS_NAME,
+      </if>
+      <if test="acceptOrgCode != null" >
+        ACCEPT_ORG_CODE,
+      </if>
+      <if test="acceptOrgName != null" >
+        ACCEPT_ORG_NAME,
+      </if>
+      <if test="acceptorId != null" >
+        ACCEPTOR_ID,
+      </if>
+      <if test="acceptorName != null" >
+        ACCEPTOR_NAME,
+      </if>
+      <if test="acceptDateTime != null" >
+        ACCEPT_DATE_TIME,
+      </if>
+      <if test="handleOrgCode != null" >
+        HANDLE_ORG_CODE,
+      </if>
+      <if test="handleOrgName != null" >
+        HANDLE_ORG_NAME,
+      </if>
+      <if test="handleClosingDate != null" >
+        HANDLE_CLOSING_DATE,
+      </if>
+      <if test="assignOrgCode != null" >
+        ASSIGN_ORG_CODE,
+      </if>
+      <if test="assignOrgName != null" >
+        ASSIGN_ORG_NAME,
+      </if>
+      <if test="assignPersonId != null" >
+        ASSIGN_PERSON_ID,
+      </if>
+      <if test="assignPersonName != null" >
+        ASSIGN_PERSON_NAME,
+      </if>
+      <if test="assignDateTime != null" >
+        ASSIGN_DATE_TIME,
+      </if>
+      <if test="handleResult != null" >
+        HANDLE_RESULT,
+      </if>
+      <if test="feedbackResult != null" >
+        FEEDBACK_RESULT,
+      </if>
+      <if test="returnVisitResult != null" >
+        RETURN_VISIT_RESULT,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="eventId != null" >
+        #{eventId,jdbcType=INTEGER},
+      </if>
+      <if test="eventSourceCode != null" >
+        #{eventSourceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="eventSourceName != null" >
+        #{eventSourceName,jdbcType=VARCHAR},
+      </if>
+      <if test="planId != null" >
+        #{planId,jdbcType=INTEGER},
+      </if>
+      <if test="recordId != null" >
+        #{recordId,jdbcType=INTEGER},
+      </if>
+      <if test="identityNo != null" >
+        #{identityNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="calledFromNum != null" >
+        #{calledFromNum,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilePhoneNum != null" >
+        #{mobilePhoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="contactAddress != null" >
+        #{contactAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="visitId != null" >
+        #{visitId,jdbcType=VARCHAR},
+      </if>
+      <if test="visitType != null" >
+        #{visitType,jdbcType=VARCHAR},
+      </if>
+      <if test="visitStartDateTime != null" >
+        #{visitStartDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="visitOrgCode != null" >
+        #{visitOrgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="visitOrgName != null" >
+        #{visitOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="hisDeptCode != null" >
+        #{hisDeptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hisDeptName != null" >
+        #{hisDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorCode != null" >
+        #{doctorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorName != null" >
+        #{doctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="reflactContent != null" >
+        #{reflactContent,jdbcType=VARCHAR},
+      </if>
+      <if test="reflactDateTime != null" >
+        #{reflactDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="needSecurityProcess != null" >
+        #{needSecurityProcess,jdbcType=INTEGER},
+      </if>
+      <if test="reflactForCode != null" >
+        #{reflactForCode,jdbcType=VARCHAR},
+      </if>
+      <if test="reflactForName != null" >
+        #{reflactForName,jdbcType=VARCHAR},
+      </if>
+      <if test="reflactContentClassCode != null" >
+        #{reflactContentClassCode,jdbcType=VARCHAR},
+      </if>
+      <if test="reflactContentClassName != null" >
+        #{reflactContentClassName,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptOrgCode != null" >
+        #{acceptOrgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptOrgName != null" >
+        #{acceptOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptorId != null" >
+        #{acceptorId,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptorName != null" >
+        #{acceptorName,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptDateTime != null" >
+        #{acceptDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="handleOrgCode != null" >
+        #{handleOrgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="handleOrgName != null" >
+        #{handleOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="handleClosingDate != null" >
+        #{handleClosingDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="assignOrgCode != null" >
+        #{assignOrgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="assignOrgName != null" >
+        #{assignOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="assignPersonId != null" >
+        #{assignPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="assignPersonName != null" >
+        #{assignPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="assignDateTime != null" >
+        #{assignDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="handleResult != null" >
+        #{handleResult,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackResult != null" >
+        #{feedbackResult,jdbcType=VARCHAR},
+      </if>
+      <if test="returnVisitResult != null" >
+        #{returnVisitResult,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sms.model.AdverseEvent" >
+    update csr_adverse_event
+    <set >
+      <if test="eventSourceCode != null" >
+        EVENT_SOURCE_CODE = #{eventSourceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="eventSourceName != null" >
+        EVENT_SOURCE_NAME = #{eventSourceName,jdbcType=VARCHAR},
+      </if>
+      <if test="planId != null" >
+        PLAN_ID = #{planId,jdbcType=INTEGER},
+      </if>
+      <if test="recordId != null" >
+        RECORD_ID = #{recordId,jdbcType=INTEGER},
+      </if>
+      <if test="identityNo != null" >
+        IDENTITY_NO = #{identityNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="calledFromNum != null" >
+        CALLED_FROM_NUM = #{calledFromNum,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilePhoneNum != null" >
+        MOBILE_PHONE_NUM = #{mobilePhoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="contactAddress != null" >
+        CONTACT_ADDRESS = #{contactAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="visitId != null" >
+        VISIT_ID = #{visitId,jdbcType=VARCHAR},
+      </if>
+      <if test="visitType != null" >
+        VISIT_TYPE = #{visitType,jdbcType=VARCHAR},
+      </if>
+      <if test="visitStartDateTime != null" >
+        VISIT_START_DATE_TIME = #{visitStartDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="visitOrgCode != null" >
+        VISIT_ORG_CODE = #{visitOrgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="visitOrgName != null" >
+        VISIT_ORG_NAME = #{visitOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="hisDeptCode != null" >
+        HIS_DEPT_CODE = #{hisDeptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hisDeptName != null" >
+        HIS_DEPT_NAME = #{hisDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorCode != null" >
+        DOCTOR_CODE = #{doctorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorName != null" >
+        DOCTOR_NAME = #{doctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="reflactContent != null" >
+        REFLACT_CONTENT = #{reflactContent,jdbcType=VARCHAR},
+      </if>
+      <if test="reflactDateTime != null" >
+        REFLACT_DATE_TIME = #{reflactDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="needSecurityProcess != null" >
+        NEED_SECURITY_PROCESS = #{needSecurityProcess,jdbcType=INTEGER},
+      </if>
+      <if test="reflactForCode != null" >
+        REFLACT_FOR_CODE = #{reflactForCode,jdbcType=VARCHAR},
+      </if>
+      <if test="reflactForName != null" >
+        REFLACT_FOR_NAME = #{reflactForName,jdbcType=VARCHAR},
+      </if>
+      <if test="reflactContentClassCode != null" >
+        REFLACT_CONTENT_CLASS_CODE = #{reflactContentClassCode,jdbcType=VARCHAR},
+      </if>
+      <if test="reflactContentClassName != null" >
+        REFLACT_CONTENT_CLASS_NAME = #{reflactContentClassName,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptOrgCode != null" >
+        ACCEPT_ORG_CODE = #{acceptOrgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptOrgName != null" >
+        ACCEPT_ORG_NAME = #{acceptOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptorId != null" >
+        ACCEPTOR_ID = #{acceptorId,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptorName != null" >
+        ACCEPTOR_NAME = #{acceptorName,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptDateTime != null" >
+        ACCEPT_DATE_TIME = #{acceptDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="handleOrgCode != null" >
+        HANDLE_ORG_CODE = #{handleOrgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="handleOrgName != null" >
+        HANDLE_ORG_NAME = #{handleOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="handleClosingDate != null" >
+        HANDLE_CLOSING_DATE = #{handleClosingDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="assignOrgCode != null" >
+        ASSIGN_ORG_CODE = #{assignOrgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="assignOrgName != null" >
+        ASSIGN_ORG_NAME = #{assignOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="assignPersonId != null" >
+        ASSIGN_PERSON_ID = #{assignPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="assignPersonName != null" >
+        ASSIGN_PERSON_NAME = #{assignPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="assignDateTime != null" >
+        ASSIGN_DATE_TIME = #{assignDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="handleResult != null" >
+        HANDLE_RESULT = #{handleResult,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackResult != null" >
+        FEEDBACK_RESULT = #{feedbackResult,jdbcType=VARCHAR},
+      </if>
+      <if test="returnVisitResult != null" >
+        RETURN_VISIT_RESULT = #{returnVisitResult,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where EVENT_ID = #{eventId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sms.model.AdverseEvent" >
+    update csr_adverse_event
+    set EVENT_SOURCE_CODE = #{eventSourceCode,jdbcType=VARCHAR},
+      EVENT_SOURCE_NAME = #{eventSourceName,jdbcType=VARCHAR},
+      PLAN_ID = #{planId,jdbcType=INTEGER},
+      RECORD_ID = #{recordId,jdbcType=INTEGER},
+      IDENTITY_NO = #{identityNo,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      CALLED_FROM_NUM = #{calledFromNum,jdbcType=VARCHAR},
+      MOBILE_PHONE_NUM = #{mobilePhoneNum,jdbcType=VARCHAR},
+      CONTACT_ADDRESS = #{contactAddress,jdbcType=VARCHAR},
+      VISIT_ID = #{visitId,jdbcType=VARCHAR},
+      VISIT_TYPE = #{visitType,jdbcType=VARCHAR},
+      VISIT_START_DATE_TIME = #{visitStartDateTime,jdbcType=TIMESTAMP},
+      VISIT_ORG_CODE = #{visitOrgCode,jdbcType=VARCHAR},
+      VISIT_ORG_NAME = #{visitOrgName,jdbcType=VARCHAR},
+      HIS_DEPT_CODE = #{hisDeptCode,jdbcType=VARCHAR},
+      HIS_DEPT_NAME = #{hisDeptName,jdbcType=VARCHAR},
+      DOCTOR_CODE = #{doctorCode,jdbcType=VARCHAR},
+      DOCTOR_NAME = #{doctorName,jdbcType=VARCHAR},
+      REFLACT_CONTENT = #{reflactContent,jdbcType=VARCHAR},
+      REFLACT_DATE_TIME = #{reflactDateTime,jdbcType=TIMESTAMP},
+      NEED_SECURITY_PROCESS = #{needSecurityProcess,jdbcType=INTEGER},
+      REFLACT_FOR_CODE = #{reflactForCode,jdbcType=VARCHAR},
+      REFLACT_FOR_NAME = #{reflactForName,jdbcType=VARCHAR},
+      REFLACT_CONTENT_CLASS_CODE = #{reflactContentClassCode,jdbcType=VARCHAR},
+      REFLACT_CONTENT_CLASS_NAME = #{reflactContentClassName,jdbcType=VARCHAR},
+      ACCEPT_ORG_CODE = #{acceptOrgCode,jdbcType=VARCHAR},
+      ACCEPT_ORG_NAME = #{acceptOrgName,jdbcType=VARCHAR},
+      ACCEPTOR_ID = #{acceptorId,jdbcType=VARCHAR},
+      ACCEPTOR_NAME = #{acceptorName,jdbcType=VARCHAR},
+      ACCEPT_DATE_TIME = #{acceptDateTime,jdbcType=TIMESTAMP},
+      HANDLE_ORG_CODE = #{handleOrgCode,jdbcType=VARCHAR},
+      HANDLE_ORG_NAME = #{handleOrgName,jdbcType=VARCHAR},
+      HANDLE_CLOSING_DATE = #{handleClosingDate,jdbcType=TIMESTAMP},
+      ASSIGN_ORG_CODE = #{assignOrgCode,jdbcType=VARCHAR},
+      ASSIGN_ORG_NAME = #{assignOrgName,jdbcType=VARCHAR},
+      ASSIGN_PERSON_ID = #{assignPersonId,jdbcType=VARCHAR},
+      ASSIGN_PERSON_NAME = #{assignPersonName,jdbcType=VARCHAR},
+      ASSIGN_DATE_TIME = #{assignDateTime,jdbcType=TIMESTAMP},
+      HANDLE_RESULT = #{handleResult,jdbcType=VARCHAR},
+      FEEDBACK_RESULT = #{feedbackResult,jdbcType=VARCHAR},
+      RETURN_VISIT_RESULT = #{returnVisitResult,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=INTEGER}
+    where EVENT_ID = #{eventId,jdbcType=INTEGER}
+  </update>
+</mapper>

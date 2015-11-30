@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sms.dao.VisitMainIndexDao" >
+  <resultMap id="BaseResultMap" type="com.sms.model.VisitMainIndex" >
+    <id column="visit_id" property="visitId" jdbcType="BIGINT" />
+    <result column="identity_no" property="identityNo" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="DATE_OF_BIRTH" property="dateOfBirth" jdbcType="TIMESTAMP" />
+    <result column="VISIT_START_DATE_TIME" property="visitStartDateTime" jdbcType="TIMESTAMP" />
+    <result column="VISIT_END_DATE_TIME" property="visitEndDateTime" jdbcType="TIMESTAMP" />
+    <result column="visit_type" property="visitType" jdbcType="VARCHAR" />
+    <result column="visit_description" property="visitDescription" jdbcType="VARCHAR" />
+    <result column="visit_hco_code" property="visitHcoCode" jdbcType="VARCHAR" />
+    <result column="visit_hco_name" property="visitHcoName" jdbcType="VARCHAR" />
+    <result column="his_visit_id" property="hisVisitId" jdbcType="VARCHAR" />
+    <result column="his_dept_code" property="hisDeptCode" jdbcType="VARCHAR" />
+    <result column="his_dept_name" property="hisDeptName" jdbcType="VARCHAR" />
+    <result column="insurance_type" property="insuranceType" jdbcType="VARCHAR" />
+    <result column="pay_type" property="payType" jdbcType="VARCHAR" />
+    <result column="doctor_code" property="doctorCode" jdbcType="VARCHAR" />
+    <result column="doctor_name" property="doctorName" jdbcType="VARCHAR" />
+    <result column="DOCTOR_TEL" property="doctorTel" jdbcType="VARCHAR" />
+    <result column="DOCTOR_IDENTITY_CARD_NUM" property="doctorIdentityCardNum" jdbcType="VARCHAR" />
+    <result column="archive_date" property="archiveDate" jdbcType="TIMESTAMP" />
+    <result column="upload_flag" property="uploadFlag" jdbcType="INTEGER" />
+    <result column="del_sign" property="delSign" jdbcType="INTEGER" />
+    <result column="del_user_code" property="delUserCode" jdbcType="VARCHAR" />
+    <result column="del_user_name" property="delUserName" jdbcType="VARCHAR" />
+    <result column="del_datetime" property="delDatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    visit_id, identity_no, name, sex, DATE_OF_BIRTH, VISIT_START_DATE_TIME, VISIT_END_DATE_TIME, 
+    visit_type, visit_description, visit_hco_code, visit_hco_name, his_visit_id, his_dept_code, 
+    his_dept_name, insurance_type, pay_type, doctor_code, doctor_name, DOCTOR_TEL, DOCTOR_IDENTITY_CARD_NUM, 
+    archive_date, upload_flag, del_sign, del_user_code, del_user_name, del_datetime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from hc_visit_master_index
+    where visit_id = #{visitId,jdbcType=BIGINT}
+  </select>
+  
+    <select id="getAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hc_visit_master_index
+  </select>
+
+  <select id="getVisitMainIndexs" resultMap="BaseResultMap" parameterType="java.util.Map">
+    select a.*
+    from hc_visit_master_index a LEFT JOIN hc_person_master_index b ON a.IDENTITY_NO = b.IDENTITY_NO  
+    where a.VISIT_END_DATE_TIME is not null  
+    AND b.MOBILE_NUMBER is not null  
+    AND b.MOBILE_NUMBER != #{emptyString,jdbcType=VARCHAR} 
+    AND a.VISIT_END_DATE_TIME between  #{startCheckDateTime,jdbcType=TIMESTAMP} and #{endCheckDateTime,jdbcType=TIMESTAMP} 
+    AND  time_to_sec(timediff(#{currentDateTime,jdbcType=TIMESTAMP} , a.VISIT_END_DATE_TIME)) > #{delayTime,jdbcType=INTEGER}  
+    AND a.VISIT_HCO_CODE IN
+    <foreach collection="codeList" item="item" open="(" separator="," close=")"> 
+        #{item} 
+    </foreach> 
+    ORDER BY a.VISIT_END_DATE_TIME DESC 
+    limit #{topNumber,jdbcType=INTEGER}  
+  </select>
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from hc_visit_master_index
+    where visit_id = #{visitId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.sms.model.VisitMainIndex" >
+    insert into hc_visit_master_index (visit_id, identity_no, name, 
+      sex, DATE_OF_BIRTH, VISIT_START_DATE_TIME, 
+      VISIT_END_DATE_TIME, visit_type, visit_description, 
+      visit_hco_code, visit_hco_name, his_visit_id, 
+      his_dept_code, his_dept_name, insurance_type, 
+      pay_type, doctor_code, doctor_name, 
+      DOCTOR_TEL, DOCTOR_IDENTITY_CARD_NUM, archive_date, 
+      upload_flag, del_sign, del_user_code, 
+      del_user_name, del_datetime)
+    values (#{visitId,jdbcType=BIGINT}, #{identityNo,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{dateOfBirth,jdbcType=TIMESTAMP}, #{visitStartDateTime,jdbcType=TIMESTAMP}, 
+      #{visitEndDateTime,jdbcType=TIMESTAMP}, #{visitType,jdbcType=VARCHAR}, #{visitDescription,jdbcType=VARCHAR}, 
+      #{visitHcoCode,jdbcType=VARCHAR}, #{visitHcoName,jdbcType=VARCHAR}, #{hisVisitId,jdbcType=VARCHAR}, 
+      #{hisDeptCode,jdbcType=VARCHAR}, #{hisDeptName,jdbcType=VARCHAR}, #{insuranceType,jdbcType=VARCHAR}, 
+      #{payType,jdbcType=VARCHAR}, #{doctorCode,jdbcType=VARCHAR}, #{doctorName,jdbcType=VARCHAR}, 
+      #{doctorTel,jdbcType=VARCHAR}, #{doctorIdentityCardNum,jdbcType=VARCHAR}, #{archiveDate,jdbcType=TIMESTAMP}, 
+      #{uploadFlag,jdbcType=INTEGER}, #{delSign,jdbcType=INTEGER}, #{delUserCode,jdbcType=VARCHAR}, 
+      #{delUserName,jdbcType=VARCHAR}, #{delDatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sms.model.VisitMainIndex" >
+    insert into hc_visit_master_index
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="visitId != null" >
+        visit_id,
+      </if>
+      <if test="identityNo != null" >
+        identity_no,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="dateOfBirth != null" >
+        DATE_OF_BIRTH,
+      </if>
+      <if test="visitStartDateTime != null" >
+        VISIT_START_DATE_TIME,
+      </if>
+      <if test="visitEndDateTime != null" >
+        VISIT_END_DATE_TIME,
+      </if>
+      <if test="visitType != null" >
+        visit_type,
+      </if>
+      <if test="visitDescription != null" >
+        visit_description,
+      </if>
+      <if test="visitHcoCode != null" >
+        visit_hco_code,
+      </if>
+      <if test="visitHcoName != null" >
+        visit_hco_name,
+      </if>
+      <if test="hisVisitId != null" >
+        his_visit_id,
+      </if>
+      <if test="hisDeptCode != null" >
+        his_dept_code,
+      </if>
+      <if test="hisDeptName != null" >
+        his_dept_name,
+      </if>
+      <if test="insuranceType != null" >
+        insurance_type,
+      </if>
+      <if test="payType != null" >
+        pay_type,
+      </if>
+      <if test="doctorCode != null" >
+        doctor_code,
+      </if>
+      <if test="doctorName != null" >
+        doctor_name,
+      </if>
+      <if test="doctorTel != null" >
+        DOCTOR_TEL,
+      </if>
+      <if test="doctorIdentityCardNum != null" >
+        DOCTOR_IDENTITY_CARD_NUM,
+      </if>
+      <if test="archiveDate != null" >
+        archive_date,
+      </if>
+      <if test="uploadFlag != null" >
+        upload_flag,
+      </if>
+      <if test="delSign != null" >
+        del_sign,
+      </if>
+      <if test="delUserCode != null" >
+        del_user_code,
+      </if>
+      <if test="delUserName != null" >
+        del_user_name,
+      </if>
+      <if test="delDatetime != null" >
+        del_datetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="visitId != null" >
+        #{visitId,jdbcType=BIGINT},
+      </if>
+      <if test="identityNo != null" >
+        #{identityNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="dateOfBirth != null" >
+        #{dateOfBirth,jdbcType=TIMESTAMP},
+      </if>
+      <if test="visitStartDateTime != null" >
+        #{visitStartDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="visitEndDateTime != null" >
+        #{visitEndDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="visitType != null" >
+        #{visitType,jdbcType=VARCHAR},
+      </if>
+      <if test="visitDescription != null" >
+        #{visitDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="visitHcoCode != null" >
+        #{visitHcoCode,jdbcType=VARCHAR},
+      </if>
+      <if test="visitHcoName != null" >
+        #{visitHcoName,jdbcType=VARCHAR},
+      </if>
+      <if test="hisVisitId != null" >
+        #{hisVisitId,jdbcType=VARCHAR},
+      </if>
+      <if test="hisDeptCode != null" >
+        #{hisDeptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hisDeptName != null" >
+        #{hisDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceType != null" >
+        #{insuranceType,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null" >
+        #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorCode != null" >
+        #{doctorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorName != null" >
+        #{doctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorTel != null" >
+        #{doctorTel,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorIdentityCardNum != null" >
+        #{doctorIdentityCardNum,jdbcType=VARCHAR},
+      </if>
+      <if test="archiveDate != null" >
+        #{archiveDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uploadFlag != null" >
+        #{uploadFlag,jdbcType=INTEGER},
+      </if>
+      <if test="delSign != null" >
+        #{delSign,jdbcType=INTEGER},
+      </if>
+      <if test="delUserCode != null" >
+        #{delUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="delUserName != null" >
+        #{delUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="delDatetime != null" >
+        #{delDatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sms.model.VisitMainIndex" >
+    update hc_visit_master_index
+    <set >
+      <if test="identityNo != null" >
+        identity_no = #{identityNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="dateOfBirth != null" >
+        DATE_OF_BIRTH = #{dateOfBirth,jdbcType=TIMESTAMP},
+      </if>
+      <if test="visitStartDateTime != null" >
+        VISIT_START_DATE_TIME = #{visitStartDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="visitEndDateTime != null" >
+        VISIT_END_DATE_TIME = #{visitEndDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="visitType != null" >
+        visit_type = #{visitType,jdbcType=VARCHAR},
+      </if>
+      <if test="visitDescription != null" >
+        visit_description = #{visitDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="visitHcoCode != null" >
+        visit_hco_code = #{visitHcoCode,jdbcType=VARCHAR},
+      </if>
+      <if test="visitHcoName != null" >
+        visit_hco_name = #{visitHcoName,jdbcType=VARCHAR},
+      </if>
+      <if test="hisVisitId != null" >
+        his_visit_id = #{hisVisitId,jdbcType=VARCHAR},
+      </if>
+      <if test="hisDeptCode != null" >
+        his_dept_code = #{hisDeptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hisDeptName != null" >
+        his_dept_name = #{hisDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="insuranceType != null" >
+        insurance_type = #{insuranceType,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null" >
+        pay_type = #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorCode != null" >
+        doctor_code = #{doctorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorName != null" >
+        doctor_name = #{doctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorTel != null" >
+        DOCTOR_TEL = #{doctorTel,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorIdentityCardNum != null" >
+        DOCTOR_IDENTITY_CARD_NUM = #{doctorIdentityCardNum,jdbcType=VARCHAR},
+      </if>
+      <if test="archiveDate != null" >
+        archive_date = #{archiveDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uploadFlag != null" >
+        upload_flag = #{uploadFlag,jdbcType=INTEGER},
+      </if>
+      <if test="delSign != null" >
+        del_sign = #{delSign,jdbcType=INTEGER},
+      </if>
+      <if test="delUserCode != null" >
+        del_user_code = #{delUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="delUserName != null" >
+        del_user_name = #{delUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="delDatetime != null" >
+        del_datetime = #{delDatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where visit_id = #{visitId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sms.model.VisitMainIndex" >
+    update hc_visit_master_index
+    set identity_no = #{identityNo,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      DATE_OF_BIRTH = #{dateOfBirth,jdbcType=TIMESTAMP},
+      VISIT_START_DATE_TIME = #{visitStartDateTime,jdbcType=TIMESTAMP},
+      VISIT_END_DATE_TIME = #{visitEndDateTime,jdbcType=TIMESTAMP},
+      visit_type = #{visitType,jdbcType=VARCHAR},
+      visit_description = #{visitDescription,jdbcType=VARCHAR},
+      visit_hco_code = #{visitHcoCode,jdbcType=VARCHAR},
+      visit_hco_name = #{visitHcoName,jdbcType=VARCHAR},
+      his_visit_id = #{hisVisitId,jdbcType=VARCHAR},
+      his_dept_code = #{hisDeptCode,jdbcType=VARCHAR},
+      his_dept_name = #{hisDeptName,jdbcType=VARCHAR},
+      insurance_type = #{insuranceType,jdbcType=VARCHAR},
+      pay_type = #{payType,jdbcType=VARCHAR},
+      doctor_code = #{doctorCode,jdbcType=VARCHAR},
+      doctor_name = #{doctorName,jdbcType=VARCHAR},
+      DOCTOR_TEL = #{doctorTel,jdbcType=VARCHAR},
+      DOCTOR_IDENTITY_CARD_NUM = #{doctorIdentityCardNum,jdbcType=VARCHAR},
+      archive_date = #{archiveDate,jdbcType=TIMESTAMP},
+      upload_flag = #{uploadFlag,jdbcType=INTEGER},
+      del_sign = #{delSign,jdbcType=INTEGER},
+      del_user_code = #{delUserCode,jdbcType=VARCHAR},
+      del_user_name = #{delUserName,jdbcType=VARCHAR},
+      del_datetime = #{delDatetime,jdbcType=TIMESTAMP}
+    where visit_id = #{visitId,jdbcType=BIGINT}
+  </update>
+</mapper>

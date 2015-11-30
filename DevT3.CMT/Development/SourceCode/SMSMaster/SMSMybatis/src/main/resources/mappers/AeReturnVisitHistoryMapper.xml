@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sms.dao.AeReturnVisitHistoryDao" >
+  <resultMap id="BaseResultMap" type="com.sms.model.AeReturnVisitHistory" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="EVENT_ID" property="eventId" jdbcType="INTEGER" />
+    <result column="RETURN_VISIT_DATE_TIME" property="returnVisitDateTime" jdbcType="TIMESTAMP" />
+    <result column="RETURN_VISIT_ORG_CODE" property="returnVisitOrgCode" jdbcType="VARCHAR" />
+    <result column="RETURN_VISIT_ORG_NAME" property="returnVisitOrgName" jdbcType="VARCHAR" />
+    <result column="RETURN_VISIT_PERSON_ID" property="returnVisitPersonId" jdbcType="VARCHAR" />
+    <result column="RETURN_VISIT_PERSON_NAME" property="returnVisitPersonName" jdbcType="VARCHAR" />
+    <result column="RETURN_VISIT_RESULT" property="returnVisitResult" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, EVENT_ID, RETURN_VISIT_DATE_TIME, RETURN_VISIT_ORG_CODE, RETURN_VISIT_ORG_NAME, 
+    RETURN_VISIT_PERSON_ID, RETURN_VISIT_PERSON_NAME, RETURN_VISIT_RESULT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from csr_ae_return_visit_history
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from csr_ae_return_visit_history
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sms.model.AeReturnVisitHistory" >
+    insert into csr_ae_return_visit_history (ID, EVENT_ID, RETURN_VISIT_DATE_TIME, 
+      RETURN_VISIT_ORG_CODE, RETURN_VISIT_ORG_NAME, 
+      RETURN_VISIT_PERSON_ID, RETURN_VISIT_PERSON_NAME, 
+      RETURN_VISIT_RESULT)
+    values (#{id,jdbcType=INTEGER}, #{eventId,jdbcType=INTEGER}, #{returnVisitDateTime,jdbcType=TIMESTAMP}, 
+      #{returnVisitOrgCode,jdbcType=VARCHAR}, #{returnVisitOrgName,jdbcType=VARCHAR}, 
+      #{returnVisitPersonId,jdbcType=VARCHAR}, #{returnVisitPersonName,jdbcType=VARCHAR}, 
+      #{returnVisitResult,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sms.model.AeReturnVisitHistory" >
+    insert into csr_ae_return_visit_history
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="eventId != null" >
+        EVENT_ID,
+      </if>
+      <if test="returnVisitDateTime != null" >
+        RETURN_VISIT_DATE_TIME,
+      </if>
+      <if test="returnVisitOrgCode != null" >
+        RETURN_VISIT_ORG_CODE,
+      </if>
+      <if test="returnVisitOrgName != null" >
+        RETURN_VISIT_ORG_NAME,
+      </if>
+      <if test="returnVisitPersonId != null" >
+        RETURN_VISIT_PERSON_ID,
+      </if>
+      <if test="returnVisitPersonName != null" >
+        RETURN_VISIT_PERSON_NAME,
+      </if>
+      <if test="returnVisitResult != null" >
+        RETURN_VISIT_RESULT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="eventId != null" >
+        #{eventId,jdbcType=INTEGER},
+      </if>
+      <if test="returnVisitDateTime != null" >
+        #{returnVisitDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="returnVisitOrgCode != null" >
+        #{returnVisitOrgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="returnVisitOrgName != null" >
+        #{returnVisitOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="returnVisitPersonId != null" >
+        #{returnVisitPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="returnVisitPersonName != null" >
+        #{returnVisitPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="returnVisitResult != null" >
+        #{returnVisitResult,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sms.model.AeReturnVisitHistory" >
+    update csr_ae_return_visit_history
+    <set >
+      <if test="eventId != null" >
+        EVENT_ID = #{eventId,jdbcType=INTEGER},
+      </if>
+      <if test="returnVisitDateTime != null" >
+        RETURN_VISIT_DATE_TIME = #{returnVisitDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="returnVisitOrgCode != null" >
+        RETURN_VISIT_ORG_CODE = #{returnVisitOrgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="returnVisitOrgName != null" >
+        RETURN_VISIT_ORG_NAME = #{returnVisitOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="returnVisitPersonId != null" >
+        RETURN_VISIT_PERSON_ID = #{returnVisitPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="returnVisitPersonName != null" >
+        RETURN_VISIT_PERSON_NAME = #{returnVisitPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="returnVisitResult != null" >
+        RETURN_VISIT_RESULT = #{returnVisitResult,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sms.model.AeReturnVisitHistory" >
+    update csr_ae_return_visit_history
+    set EVENT_ID = #{eventId,jdbcType=INTEGER},
+      RETURN_VISIT_DATE_TIME = #{returnVisitDateTime,jdbcType=TIMESTAMP},
+      RETURN_VISIT_ORG_CODE = #{returnVisitOrgCode,jdbcType=VARCHAR},
+      RETURN_VISIT_ORG_NAME = #{returnVisitOrgName,jdbcType=VARCHAR},
+      RETURN_VISIT_PERSON_ID = #{returnVisitPersonId,jdbcType=VARCHAR},
+      RETURN_VISIT_PERSON_NAME = #{returnVisitPersonName,jdbcType=VARCHAR},
+      RETURN_VISIT_RESULT = #{returnVisitResult,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

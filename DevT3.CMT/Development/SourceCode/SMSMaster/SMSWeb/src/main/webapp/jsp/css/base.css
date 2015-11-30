@@ -1,0 +1,94 @@
+html{background:#fff;}
+body{ font-size:14px; font-family:"microsoft yahei";color:#2c2c2c;background:#f9f9f9;}
+html, body, div, span, h1, h2, h3, h4, h5, h6, em, img, strong, sub, sup, tt,dd, dl, dt, form, label, table, caption, tbody, tfoot, thead, tr, th, td,ul,li,p,a{ margin: 0; padding: 0;  }
+input,select,textarea{ vertical-align:middle;}
+img{ border:0;}
+ul,li{ list-style-type:none;}
+a:link,a:visited{text-decoration:none;color:#010101;}
+a:hover{text-decoration:none; color:#3ea2ee;}
+.clear {clear: both;}
+.clearfix:after {clear: both;content: ' ';display: block;font-size: 0;line-height: 0;visibility: hidden;width: 0;height: 0;}
+.clearfix{zoom:1}
+.fl{float: left;}
+.fr{float: right;}
+.ml20{margin-left: 20px;}
+.mt10{margin-top: 10px;}
+.mt20{margin-top: 20px;}
+.hide{display: none;}
+.bold{font-weight: bold;}
+.orange{color:#eb6100;}
+
+/*页面主体结构*/
+.header{width: 100%; height: 70px; background: #d8edfd;}
+.header .logo{ margin:20px 0 0 20px;}
+.leftsidebar{position: absolute; top: 70px; left: 0px; bottom: 0px; width: 206px; min-height: 500px; background: #1b2737;}
+.leftsidebar a{color: #545f6e;}
+.leftsidebar a:hover{color: #fff;}
+.leftsidebar div > a{display: block; padding: 17px 24px;}
+.leftsidebar div > a.active{color: #fff;}
+.leftsidebar div ul li a{position: relative; display: block; padding: 18px 0; text-align: center;border-left: 4px solid #1b2737;}
+.leftsidebar div ul li a:hover,.leftsidebar div ul li.active a{background:#3ea2ee ; border-left: 4px solid #b2deff; color:#fff;}
+.leftsidebar div ul li a:before{position: absolute; top: 12px; left: 20px; content:""; width: 30px; height: 30px;  }
+.leftsidebar div ul li a.menu-icon01:before{background: url("../images/leftsidebar-icon.png") -1px -10px no-repeat;}
+.leftsidebar div ul li a.menu-icon02:before{background: url("../images/leftsidebar-icon.png") -1px -62px no-repeat;}
+.leftsidebar div ul li a.menu-icon03:before{background: url("../images/leftsidebar-icon.png") -1px -110px no-repeat;}
+.leftsidebar div ul li a.menu-icon04:before{background: url("../images/leftsidebar-icon.png") -1px -160px no-repeat;}
+.leftsidebar div ul li a:hover.menu-icon01:before,.leftsidebar div ul li.active a.menu-icon01:before{background: url("../images/leftsidebar-icon.png") -1px -210px no-repeat;}
+.leftsidebar div ul li a:hover.menu-icon02:before,.leftsidebar div ul li.active a.menu-icon02:before{background: url("../images/leftsidebar-icon.png") -1px -262px no-repeat;}
+.leftsidebar div ul li a:hover.menu-icon03:before,.leftsidebar div ul li.active a.menu-icon03:before{background: url("../images/leftsidebar-icon.png") -1px -310px no-repeat;}
+.leftsidebar div ul li a:hover.menu-icon04:before,.leftsidebar div ul li.active a.menu-icon04:before{background: url("../images/leftsidebar-icon.png") -1px -360px no-repeat;}
+.main{position: absolute; top: 70px; left: 206px; bottom: 0px; right: 0px; }
+.main > div{border: 1px solid #e1e1e1; margin: 20px; }
+.main .mainTitle{padding: 22px 10px; font-weight: bold; border-bottom: 1px solid #e1e1e1; background: #f9f9f9;}
+.main .mainCon{padding: 20px 10px; background: #fff;}
+
+
+/*按钮*/
+.btn{display: inline-block; width: 100px; height: 40px; text-align: center; outline: none; line-height: 40px; color: #fff; border: none; border-radius: 5px; overflow: hidden; cursor: pointer;}
+.btn-blue{background: #3ea2ee;}
+.btn-blue:hover{background: #3890d3;}
+.btn-white{background: #fff; color: #2c2c2c; border: 1px solid #e1e1e1;}
+.btn-white:hover{background: #ebeaea;}
+.btn-auto{width: auto;}
+/*分页*/
+.page{float: right;}
+.page select{display:block; float: left; width: 100px; height: 40px; text-align: center; line-height: 40px; color: #777777; outline:none; border: 1px solid #e1e1e1;  background: #f9f9f9; border-radius: 5px; }
+.page span{ display:block; float: left; width: 15px; height: 16px;  margin: 12px 10px; cursor: pointer;}
+.page .page-left{ background: url("../images/pege.png") 0 0 no-repeat; }
+.page .page-left:hover{ background: url("../images/pege.png") -25px 0 no-repeat; }
+.page .page-right{ background: url("../images/pege.png") -75px 0 no-repeat; }
+.page .page-right:hover{ background: url("../images/pege.png") -50px 0 no-repeat; }
+
+
+/*表格*/
+.table {width: 100%; border-collapse: collapse; background: #ffffff; border: 1px solid #e1e1e1;} 
+.table thead tr{height: 48px; background: #fafafa;border: 1px solid #e1e1e1;}
+.table tbody tr{height: 48px; border: 1px solid #e1e1e1; text-align: center;}
+.table tbody tr:hover td{background: #e6f1fd;}
+.table tbody td a:hover{text-decoration: underline;}
+.table .operate span{position: relative; display: block; float:left; width: 65px; height: 48px; cursor: pointer;}
+.table .operate span:hover{background-color: #317ef3; }
+.table .operate span:before{position: absolute; content: ""; top: 15px; left: 24px; width: 16px; height: 16px; }
+.table .operate span.edit:before{background: url("../images/table_icon.png") -48px 0 no-repeat ;}
+.table .operate span.del:before{background: url("../images/table_icon.png") -65px 0 no-repeat ;}
+.table .operate span.stop:before{background: url("../images/table_icon.png") -80px 0 no-repeat ;}
+.table .operate span:hover.edit:before{background: url("../images/table_icon.png") -97px 0 no-repeat ;}
+.table .operate span:hover.del:before{background: url("../images/table_icon.png") -112px 0 no-repeat ;}
+.table .operate span:hover.stop:before{background: url("../images/table_icon.png") -128px 0 no-repeat ;}
+.table .state div{position: relative; display: inline-block; width: 16px; height: 16px; cursor: pointer;}
+.table .state .notStarted{background: url("../images/table_icon.png") 0 0 no-repeat ;}
+.table .state .started{background: url("../images/table_icon.png") -16px 0 no-repeat ;}
+.table .state .over{background: url("../images/table_icon.png") -32px 0 no-repeat ;}
+.table .state .cancel{background: url("../images/table_icon.png") -207px 0 no-repeat ;}
+.table .state .state-icon01{background: url("../images/table_icon.png") -161px 0 no-repeat ;}
+.table .state .state-icon02{background: url("../images/table_icon.png") -177px 0 no-repeat ;}
+.table .state .state-icon03{background: url("../images/table_icon.png") -192px 0 no-repeat ;}
+.table .stateBox{position:absolute; display: none; top: -45px; left: 0px; width: 62px; height: 48px; line-height: 40px; text-align: center; background: url("../images/stateBox.png") 0 0 no-repeat; color: #fff; }
+
+
+
+
+
+
+
+

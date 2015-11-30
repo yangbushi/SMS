@@ -1,0 +1,140 @@
+.ReviewPlan .newPlan{background:url("../images/newPlan_icon.png") 20px center no-repeat #2cba8d; padding-left: 20px;}
+.ReviewPlan .newPlan:hover{background-color: #26a079;}
+.ReviewPlan .refresh{background:url("../images/refresh_icon.png") 20px center no-repeat #3ea2ee; padding-left: 20px;}
+.ReviewPlan .refresh:hover{background-color: #3891d4;}
+.ReviewPlan .table td{cursor: pointer;}
+
+.pop-newPlan.pop-window{padding: 20px 20px 80px 20px;}
+.pop-newPlan .formList > li{position: relative; padding-left: 75px; margin-bottom: 10px;}
+.pop-newPlan .formList > li label{position: absolute; left: 0px;  top: 4px; font-weight: bold; color: #2c2c2c;}
+.pop-newPlan .formList > li input,.formList > li select{width: 285px; height: 30px; border: 1px solid #e1e1e1; padding: 0;}
+.pop-newPlan .formList > li.noteNumber{padding-left: 125px;}
+.pop-newPlan .formList > li.noteNumber input{width: 65px;}
+.pop-newPlan .formList > li input.date{width: 260px; padding-right: 25px; background: url("../images/date_icon.jpg") right center no-repeat #fff;}
+.pop-btn{position: fixed; width: 100%; bottom: 0px; left: 0px; right: 0px; text-align: center; background: #fff; border-top: 1px solid #e1e1e1; padding: 20px 0;}
+
+
+.pop-viewPlan > div{padding: 10px; color: #454545;}
+.pop-viewPlan .title{ font-weight: bold; color: #2c2c2c; border-bottom: 1px solid #e1e1e1;}
+.pop-viewPlan .title span{display: block; float: right; margin-right: 20px; width: 16px; height: 16px; cursor: pointer;}
+.pop-viewPlan .title span.editPlan{background: url("../images/table_icon.png") -48px 0 no-repeat;}
+.pop-viewPlan .title span.delPlan{background: url("../images/table_icon.png") -65px 0 no-repeat;}
+.pop-viewPlan .data{border-bottom: 1px solid #e1e1e1;}
+.pop-viewPlan .data .state{font-size: 30px; text-align: center; padding: 25px 0;}
+.pop-viewPlan .data .state.state01{color: #e6a304;}
+.pop-viewPlan .data .state.state02{color: #2cba8d;}
+.pop-viewPlan .data .state.state03{color: #3ea2ee;}
+.pop-viewPlan .data .state.state04{color: #cdcdcd;}
+.pop-viewPlan label{color: #777777;}
+.pop-viewPlan .planInfo{display: none; margin: 10px 0; border: 1px solid #e1e1e1; padding: 7px; background-color: #f9f9f9;}
+.pop-viewPlan .planInfo p{position: relative; padding-left: 20px;}
+.pop-viewPlan .planInfo p:before{position: absolute; left: 0px; top: 2px; width: 16px; height: 16px; content: ""; background: url("../images/address_icon.png") 0 0 no-repeat;}
+.pop-viewPlan .viewInfo{color: #3ea2ee; text-decoration: underline;  cursor: pointer;}
+
+
+
+
+.auditMenu{float: left;}
+.auditMenu a{display: block; float: left; padding: 5px 0; margin: 0 20px; text-align: center; cursor: pointer;}
+.auditMenu a.active,.auditMenu a:hover{border-bottom: 4px solid #3ea2ee; color: #2c2c2c;}
+.search{display: none;}
+.search > ul{margin-top: 10px; background: #f9f9f9; padding-top: 10px; border-top: 1px solid #e1e1e1; }
+.search > ul > li{ float: left; width: 460px; margin-bottom: 10px;}
+.search > ul > li .row{position: relative; float: left;}
+.search > ul > li .row > div{margin-left: 90px;}
+.search > ul > li label{position: absolute; left: 0px; top: 5px; display: block; width: 80px; color: #2c2c2c; font-weight: bold; text-align: right;}
+.search > ul > li input[type='text']{ height: 20px; border: 1px solid #e1e1e1; padding: 4px; width: 112px;}
+.search > ul > li input.date{ width: 87px; padding-right: 25px; background: url("../images/date_icon.jpg") right center no-repeat #fff;}
+.search > ul > li select{ height: 30px; border: 1px solid #e1e1e1; padding: 4px; width: 122px;}
+.search .search-btn{border-top: 1px solid #e1e1e1; text-align: center; padding:20px 0; border-bottom: 1px solid #e1e1e1; margin-bottom: 10px;}
+.search .tips{color: #777777;}
+.search .searchNull{text-align: center; padding: 50px 0; }
+.search .searchNull img,.search .searchNull span{vertical-align: middle;}
+.search .searchNull span{margin-left: 50px; color: #777777;}
+
+
+.pop-auditNote{background: #fff;}
+.pop-auditNote .formList > li{position: relative; padding-left: 145px; margin-bottom: 10px;}
+.pop-auditNote .formList > li label{position: absolute; left: 0px;  top: 4px; font-weight: bold; color: #2c2c2c;}
+.pop-auditNote .formList > li input,.formList > li select{width: 285px; height: 30px; border: 1px solid #e1e1e1; padding: 0;}
+.evaluateList,.adviseList{margin-bottom: 15px;}
+.evaluateList li{float: left; padding: 8px 0; margin:0 20px; cursor: pointer;}
+.evaluateList li.active{border-bottom: 4px solid #3ea2ee ; }
+.adviseList{display: none;}
+.adviseList li{float: left; padding: 0 22px; height: 28px; margin:0 10px 10px 0; line-height: 28px; border-radius: 14px; border: 1px solid #e1e1e1; text-align: center; cursor: pointer; }
+.adviseList li:hover,.adviseList li.active{border: 1px solid #2f9be7;}
+
+
+
+
+.ViewAssessment{padding: 20px; }
+.ViewAssessment .baseInfo{border: 1px solid #e1e1e1; background: #fff;}
+.ViewAssessment .baseInfo .title{position: relative; padding: 10px; border-bottom: 1px solid #e1e1e1; font-size: 24px; color: #2c2c2c; text-align: center;}
+.ViewAssessment .baseInfo .title .tips{position: absolute; top: -10px; left: 25px; width: 75px; height: 32px; background: url("../images/tips.png") 0 0 no-repeat; font-size: 14px; color: #fff; text-align: center; line-height: 32px; }
+.ViewAssessment .baseInfo .time{padding: 10px 25px;}
+.ViewAssessment .baseInfo .time label{color: #777777;}
+.ViewAssessment .dataForm{margin-top: 10px; border: 1px solid #e1e1e1; background: #fff;}
+.ViewAssessment .dataForm .title{padding: 10px 20px;  background: #fafafa; border-bottom:1px solid #e1e1e1; }
+.ViewAssessment .dataForm .title a{color: #777777;}
+.ViewAssessment .dataForm .title a:hover{text-decoration: underline;}
+.ViewAssessment .dataForm .dataList{padding: 20px; border-bottom:1px solid #e1e1e1;}
+.ViewAssessment .dataForm .dataList li{float: left; width: 20%;}
+.ViewAssessment .dataForm .dataList li div{border-left: 8px solid #2cba8d; padding-left: 5px;}
+.ViewAssessment .dataForm .dataList li div label{color: #777777;}
+.ViewAssessment .dataForm .dataList li div p{font-size: 24px; color: #2c2c2c;}
+.ViewAssessment .dataForm .dataTable{padding: 10px;}
+
+
+
+
+.EventProcess .focus{display: inline-block; width: 15px; height: 18px; background: url("../images/table_icon.png") -144px 0 no-repeat; vertical-align: middle;}
+
+
+.Pop-eventProcess{background-color: #fff; padding-bottom: 70px;}
+.Pop-eventProcess .eventList li{float: left; width: 20%;text-align: center; border-top: 5px solid #e3e3e3; color: #bbbbbb; padding: 5px 0;}
+.Pop-eventProcess .eventList li.active{border-top: 5px solid #3ea2ee; color: #2c2c2c;}
+.Pop-eventProcess .eventInfo{padding: 20px 20px 10px 20px; margin-top: 20px; border-bottom: 2px solid #e5e5e5;}
+.Pop-eventProcess .title{margin-bottom: 20px; text-align: center; font-weight: bold; color: #f94825;}
+.Pop-eventProcess .title span{display: inline-block; width: 30px; height: 30px; text-align: center; line-height: 30px; margin-right: 5px; font-weight: normal; font-size: 22px; border: 1px solid #f94825; border-radius: 50%;}
+.Pop-eventProcess .title .attention{float: left; display: block; width: 94px; height: 32px; text-align: center; line-height: 32px; background-color: #2cba8d; color: #fff; }
+.Pop-eventProcess .title .attention.active{background-color: #3ea2ee;}
+.Pop-eventProcess .infoList li{position: relative; float: left; margin-bottom: 10px; padding-left: 75px;  width: 140px}
+.Pop-eventProcess .infoList li.special{width: 550px;}
+.Pop-eventProcess .infoList li label{position: absolute; left: 0px;}
+.Pop-eventProcess .event-scope{padding: 10px; margin: 20px; }
+.Pop-eventProcess .event-scope .special .title{margin-top: 30px; text-align: center;  color: #bbbbbb;}
+.Pop-eventProcess .event01{border: 1px solid #e1e1e1;}
+.Pop-eventProcess .event01 > div:first-child{border-bottom: 1px dashed #e3e3e3;}
+.Pop-eventProcess .event01 > div label{float: left; margin-top: 10px; color: #777777;}
+.Pop-eventProcess .event01 > div ul{float: left;}
+.Pop-eventProcess .event01 > div li{display: block; float: left; border-bottom: 4px solid #fff; margin: 10px 20px; text-align: center; cursor: pointer;}
+.Pop-eventProcess .event01 > div li.active,.event01 > div li:hover{border-bottom: 4px solid #3ea2ee; color: #2c2c2c;}
+.Pop-eventProcess .eventSaveList li{background: #f2f2f2; padding: 10px 5px; margin-bottom: 10px;}
+.Pop-eventProcess .eventSaveList li:last-child{background: #d8edfd;margin-bottom:0px; }
+.Pop-eventProcess .eventSaveList li div{position: relative; padding-left: 75px; }
+.Pop-eventProcess .eventSaveList li div label{position: absolute; left: 0px;  color: #777777;}
+.Pop-eventProcess .eventSave{display: none; color: #2cba8d; font-size: 30px; text-align: center; padding: 30px 0;}
+.Pop-eventProcess .scope{position: relative; padding-left: 70px; margin-bottom: 10px;}
+.Pop-eventProcess .scope label{position: absolute; left: 0px; top: 6px; font-weight: bold; color: #2c2c2c;}
+.Pop-eventProcess .scope input,.Pop-eventProcess .scope select{width: 200px; height: 30px; padding: 0 10px;  border: 1px solid #e1e1e1;  border-radius: 3px;}
+.Pop-eventProcess .scope select{width: 222px;}
+.Pop-eventProcess .scope textarea{width: 540px; height: 85px; resize:none; border: 1px solid #e1e1e1;  border-radius: 3px;}
+.Pop-eventProcess .event-scope .special .scope{padding-left: 160px;}
+.Pop-eventProcess .event-scope .special .scope label{color: #777777;}
+.Pop-eventProcess .event-scope .special .scope input{width: 330px;}
+.Pop-eventProcess .event03 .alt{background-color: #f2f2f2; padding: 5px; margin-bottom: 10px; width: 540px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,3 @@
+com\vico\msgservice\receive\ui\MsgReceiveFrame.class
+com\vico\msgservice\receive\service\MsgReceiveService.class
+com\vico\msgservice\receive\MsgReceive.class

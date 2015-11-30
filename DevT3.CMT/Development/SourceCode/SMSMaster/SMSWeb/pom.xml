@@ -1,0 +1,64 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<parent>
+		<artifactId>SMSMaster</artifactId>
+		<groupId>com.smsmaster</groupId>
+		<version>${pro-version}</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.smsweb</groupId>
+	<artifactId>SMSWeb</artifactId>
+	<packaging>war</packaging>
+	<name>SMSWeb</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<!-- spring版本号 <spring.version>3.2.9.RELEASE</spring.version> -->
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.0.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.sms</groupId>
+			<artifactId>SMSMybatis</artifactId>
+			<version>${pro-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring-version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-taglibs</artifactId>
+		    <version>${spring-version}</version>
+		</dependency>
+		<!-- jstl表达式 -->
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>taglibs</groupId>
+			<artifactId>standard</artifactId>
+			<version>1.1.2</version>
+		</dependency>
+		<!-- 日期转换用到 -->
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+			<version>2.7</version>
+		</dependency>
+
+
+	</dependencies>
+	<build>
+		<finalName>SMSWeb</finalName>
+	</build>
+</project>

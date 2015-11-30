@@ -1,0 +1,3 @@
+com\vico\msgservice\send\ui\MsgSendFrame.class
+com\vico\msgservice\send\MsgSend.class
+com\vico\msgservice\send\service\MsgSendService.class

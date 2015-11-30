@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sms.dao.EvaluationRecordDao" >
+  <resultMap id="BaseResultMap" type="com.sms.model.EvaluationRecord" >
+    <id column="RECORD_ID" property="recordId" jdbcType="INTEGER" />
+    <result column="PLAN_ID" property="planId" jdbcType="INTEGER" />
+    <result column="IDENTITY_NO" property="identityNo" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="MOBILE_PHONE_NUM" property="mobilePhoneNum" jdbcType="VARCHAR" />
+    <result column="VISIT_ID" property="visitId" jdbcType="VARCHAR" />
+    <result column="VISIT_TYPE" property="visitType" jdbcType="VARCHAR" />
+    <result column="VISIT_START_DATE_TIME" property="visitStartDateTime" jdbcType="TIMESTAMP" />
+    <result column="VISIT_ORG_CODE" property="visitOrgCode" jdbcType="VARCHAR" />
+    <result column="VISIT_ORG_NAME" property="visitOrgName" jdbcType="VARCHAR" />
+    <result column="HIS_DEPT_CODE" property="hisDeptCode" jdbcType="VARCHAR" />
+    <result column="HIS_DEPT_NAME" property="hisDeptName" jdbcType="VARCHAR" />
+    <result column="DOCTOR_NAME" property="doctorName" jdbcType="VARCHAR" />
+    <result column="SMS_SEND_CONTENT" property="smsSendContent" jdbcType="VARCHAR" />
+    <result column="SEND_DATE_TIME" property="sendDateTime" jdbcType="TIMESTAMP" />
+    <result column="IS_REPLY" property="isReply" jdbcType="INTEGER" />
+    <result column="SMS_REPLY_CONTENT" property="smsReplyContent" jdbcType="VARCHAR" />
+    <result column="REPLY_DATE_TIME" property="replyDateTime" jdbcType="TIMESTAMP" />
+    <result column="REFLACT_CONTENT" property="reflactContent" jdbcType="VARCHAR" />
+    <result column="IS_SMS_REPLY_CONTENT_VALID" property="isSmsReplyContentValid" jdbcType="INTEGER" />
+    <result column="MANUAL_PROCESSED" property="manualProcessed" jdbcType="INTEGER" />
+    <result column="PROCESS_ORG_CODE" property="processOrgCode" jdbcType="VARCHAR" />
+    <result column="PROCESS_ORG_NAME" property="processOrgName" jdbcType="VARCHAR" />
+    <result column="PROCESS_PERSON_ID" property="processPersonId" jdbcType="VARCHAR" />
+    <result column="PROCESS_PERSON_NAME" property="processPersonName" jdbcType="VARCHAR" />
+    <result column="PROCESS_DATE_TIME" property="processDateTime" jdbcType="TIMESTAMP" />
+    <result column="IS_SATISFACTION" property="isSatisfaction" jdbcType="INTEGER" />
+    <result column="CSR_RESULT_CODE" property="csrResultCode" jdbcType="VARCHAR" />
+    <result column="CSR_RESULT_NAME" property="csrResultName" jdbcType="VARCHAR" />
+    <result column="THE_BEST_DOCTOR" property="theBestDoctor" jdbcType="VARCHAR" />
+    <result column="THE_WORST_DOCTOR" property="theWorstDoctor" jdbcType="VARCHAR" />
+    <result column="DOCTOR_CODE" property="doctorCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    RECORD_ID, PLAN_ID, IDENTITY_NO, NAME, MOBILE_PHONE_NUM, VISIT_ID, VISIT_TYPE, VISIT_START_DATE_TIME, 
+    VISIT_ORG_CODE, VISIT_ORG_NAME, HIS_DEPT_CODE, HIS_DEPT_NAME, DOCTOR_NAME, SMS_SEND_CONTENT, 
+    SEND_DATE_TIME, IS_REPLY, SMS_REPLY_CONTENT, REPLY_DATE_TIME, REFLACT_CONTENT, IS_SMS_REPLY_CONTENT_VALID, 
+    MANUAL_PROCESSED, PROCESS_ORG_CODE, PROCESS_ORG_NAME, PROCESS_PERSON_ID, PROCESS_PERSON_NAME, 
+    PROCESS_DATE_TIME, IS_SATISFACTION, CSR_RESULT_CODE, CSR_RESULT_NAME, THE_BEST_DOCTOR, 
+    THE_WORST_DOCTOR, DOCTOR_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from csr_record
+    where RECORD_ID = #{recordId,jdbcType=INTEGER}
+  </select>
+  
+    <select id="getSendDateByIdentityNo" resultType="java.util.Date" parameterType="java.lang.String" >
+    select SEND_DATE_TIME
+    from csr_record
+    where IDENTITY_NO = #{identityNo,jdbcType=VARCHAR}
+  </select>
+   <select id="getAll" resultMap="BaseResultMap"  >
+    select 
+    <include refid="Base_Column_List" />
+    from csr_record
+  </select>
+  
+  <select id="getCountUnaudited" resultMap="java.lang.Integer"  >
+    select count(RECORD_ID)
+    from csr_record where MANUAL_PROCESSED = '0'
+  </select>
+  <select id="getAllPageItems" resultMap="BaseResultMap"  >
+    select 
+    <include refid="Base_Column_List" />
+    from csr_record order by REPLY_DATE_TIME desc limit #{0},#{1}
+  </select>
+  <select id="getUnauditedPageItems" resultMap="BaseResultMap"  >
+     select 
+    <include refid="Base_Column_List" />
+    from csr_record where MANUAL_PROCESSED = '0'
+    order by REPLY_DATE_TIME desc limit #{0},#{1}
+  </select>
+  
+    <select id="getNumOfHasSendMsg" resultType="java.lang.Integer"  >
+    select count(RECORD_ID)
+      from csr_record where PLAN_ID = #{planId,jdbcType=INTEGER} and   
+      SEND_DATE_TIME between #{startCheckDateTime,jdbcType=TIMESTAMP} and #{endCheckDateTime,jdbcType=TIMESTAMP}  
+      and VISIT_TYPE in 
+    <foreach collection="type" item="item" open="(" separator="," close=")">
+        #{item} 
+    </foreach>   
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from csr_record
+    where RECORD_ID = #{recordId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sms.model.EvaluationRecord" >
+    insert into csr_record (RECORD_ID, PLAN_ID, IDENTITY_NO, 
+      NAME, MOBILE_PHONE_NUM, VISIT_ID, 
+      VISIT_TYPE, VISIT_START_DATE_TIME, VISIT_ORG_CODE, 
+      VISIT_ORG_NAME, HIS_DEPT_CODE, HIS_DEPT_NAME, 
+      DOCTOR_NAME, SMS_SEND_CONTENT, SEND_DATE_TIME, 
+      IS_REPLY, SMS_REPLY_CONTENT, REPLY_DATE_TIME, 
+      REFLACT_CONTENT, IS_SMS_REPLY_CONTENT_VALID, 
+      MANUAL_PROCESSED, PROCESS_ORG_CODE, PROCESS_ORG_NAME, 
+      PROCESS_PERSON_ID, PROCESS_PERSON_NAME, PROCESS_DATE_TIME, 
+      IS_SATISFACTION, CSR_RESULT_CODE, CSR_RESULT_NAME, 
+      THE_BEST_DOCTOR, THE_WORST_DOCTOR, DOCTOR_CODE
+      )
+    values (#{recordId,jdbcType=INTEGER}, #{planId,jdbcType=INTEGER}, #{identityNo,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{mobilePhoneNum,jdbcType=VARCHAR}, #{visitId,jdbcType=VARCHAR}, 
+      #{visitType,jdbcType=VARCHAR}, #{visitStartDateTime,jdbcType=TIMESTAMP}, #{visitOrgCode,jdbcType=VARCHAR}, 
+      #{visitOrgName,jdbcType=VARCHAR}, #{hisDeptCode,jdbcType=VARCHAR}, #{hisDeptName,jdbcType=VARCHAR}, 
+      #{doctorName,jdbcType=VARCHAR}, #{smsSendContent,jdbcType=VARCHAR}, #{sendDateTime,jdbcType=TIMESTAMP}, 
+      #{isReply,jdbcType=INTEGER}, #{smsReplyContent,jdbcType=VARCHAR}, #{replyDateTime,jdbcType=TIMESTAMP}, 
+      #{reflactContent,jdbcType=VARCHAR}, #{isSmsReplyContentValid,jdbcType=INTEGER}, 
+      #{manualProcessed,jdbcType=INTEGER}, #{processOrgCode,jdbcType=VARCHAR}, #{processOrgName,jdbcType=VARCHAR}, 
+      #{processPersonId,jdbcType=VARCHAR}, #{processPersonName,jdbcType=VARCHAR}, #{processDateTime,jdbcType=TIMESTAMP}, 
+      #{isSatisfaction,jdbcType=INTEGER}, #{csrResultCode,jdbcType=VARCHAR}, #{csrResultName,jdbcType=VARCHAR}, 
+      #{theBestDoctor,jdbcType=VARCHAR}, #{theWorstDoctor,jdbcType=VARCHAR}, #{doctorCode,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sms.model.EvaluationRecord" >
+    insert into csr_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="recordId != null" >
+        RECORD_ID,
+      </if>
+      <if test="planId != null" >
+        PLAN_ID,
+      </if>
+      <if test="identityNo != null" >
+        IDENTITY_NO,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="mobilePhoneNum != null" >
+        MOBILE_PHONE_NUM,
+      </if>
+      <if test="visitId != null" >
+        VISIT_ID,
+      </if>
+      <if test="visitType != null" >
+        VISIT_TYPE,
+      </if>
+      <if test="visitStartDateTime != null" >
+        VISIT_START_DATE_TIME,
+      </if>
+      <if test="visitOrgCode != null" >
+        VISIT_ORG_CODE,
+      </if>
+      <if test="visitOrgName != null" >
+        VISIT_ORG_NAME,
+      </if>
+      <if test="hisDeptCode != null" >
+        HIS_DEPT_CODE,
+      </if>
+      <if test="hisDeptName != null" >
+        HIS_DEPT_NAME,
+      </if>
+      <if test="doctorName != null" >
+        DOCTOR_NAME,
+      </if>
+      <if test="smsSendContent != null" >
+        SMS_SEND_CONTENT,
+      </if>
+      <if test="sendDateTime != null" >
+        SEND_DATE_TIME,
+      </if>
+      <if test="isReply != null" >
+        IS_REPLY,
+      </if>
+      <if test="smsReplyContent != null" >
+        SMS_REPLY_CONTENT,
+      </if>
+      <if test="replyDateTime != null" >
+        REPLY_DATE_TIME,
+      </if>
+      <if test="reflactContent != null" >
+        REFLACT_CONTENT,
+      </if>
+      <if test="isSmsReplyContentValid != null" >
+        IS_SMS_REPLY_CONTENT_VALID,
+      </if>
+      <if test="manualProcessed != null" >
+        MANUAL_PROCESSED,
+      </if>
+      <if test="processOrgCode != null" >
+        PROCESS_ORG_CODE,
+      </if>
+      <if test="processOrgName != null" >
+        PROCESS_ORG_NAME,
+      </if>
+      <if test="processPersonId != null" >
+        PROCESS_PERSON_ID,
+      </if>
+      <if test="processPersonName != null" >
+        PROCESS_PERSON_NAME,
+      </if>
+      <if test="processDateTime != null" >
+        PROCESS_DATE_TIME,
+      </if>
+      <if test="isSatisfaction != null" >
+        IS_SATISFACTION,
+      </if>
+      <if test="csrResultCode != null" >
+        CSR_RESULT_CODE,
+      </if>
+      <if test="csrResultName != null" >
+        CSR_RESULT_NAME,
+      </if>
+      <if test="theBestDoctor != null" >
+        THE_BEST_DOCTOR,
+      </if>
+      <if test="theWorstDoctor != null" >
+        THE_WORST_DOCTOR,
+      </if>
+      <if test="doctorCode != null" >
+        DOCTOR_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="recordId != null" >
+        #{recordId,jdbcType=INTEGER},
+      </if>
+      <if test="planId != null" >
+        #{planId,jdbcType=INTEGER},
+      </if>
+      <if test="identityNo != null" >
+        #{identityNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilePhoneNum != null" >
+        #{mobilePhoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="visitId != null" >
+        #{visitId,jdbcType=VARCHAR},
+      </if>
+      <if test="visitType != null" >
+        #{visitType,jdbcType=VARCHAR},
+      </if>
+      <if test="visitStartDateTime != null" >
+        #{visitStartDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="visitOrgCode != null" >
+        #{visitOrgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="visitOrgName != null" >
+        #{visitOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="hisDeptCode != null" >
+        #{hisDeptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hisDeptName != null" >
+        #{hisDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorName != null" >
+        #{doctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="smsSendContent != null" >
+        #{smsSendContent,jdbcType=VARCHAR},
+      </if>
+      <if test="sendDateTime != null" >
+        #{sendDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isReply != null" >
+        #{isReply,jdbcType=INTEGER},
+      </if>
+      <if test="smsReplyContent != null" >
+        #{smsReplyContent,jdbcType=VARCHAR},
+      </if>
+      <if test="replyDateTime != null" >
+        #{replyDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reflactContent != null" >
+        #{reflactContent,jdbcType=VARCHAR},
+      </if>
+      <if test="isSmsReplyContentValid != null" >
+        #{isSmsReplyContentValid,jdbcType=INTEGER},
+      </if>
+      <if test="manualProcessed != null" >
+        #{manualProcessed,jdbcType=INTEGER},
+      </if>
+      <if test="processOrgCode != null" >
+        #{processOrgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="processOrgName != null" >
+        #{processOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="processPersonId != null" >
+        #{processPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="processPersonName != null" >
+        #{processPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="processDateTime != null" >
+        #{processDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isSatisfaction != null" >
+        #{isSatisfaction,jdbcType=INTEGER},
+      </if>
+      <if test="csrResultCode != null" >
+        #{csrResultCode,jdbcType=VARCHAR},
+      </if>
+      <if test="csrResultName != null" >
+        #{csrResultName,jdbcType=VARCHAR},
+      </if>
+      <if test="theBestDoctor != null" >
+        #{theBestDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="theWorstDoctor != null" >
+        #{theWorstDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorCode != null" >
+        #{doctorCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sms.model.EvaluationRecord" >
+    update csr_record
+    <set >
+      <if test="planId != null" >
+        PLAN_ID = #{planId,jdbcType=INTEGER},
+      </if>
+      <if test="identityNo != null" >
+        IDENTITY_NO = #{identityNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilePhoneNum != null" >
+        MOBILE_PHONE_NUM = #{mobilePhoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="visitId != null" >
+        VISIT_ID = #{visitId,jdbcType=VARCHAR},
+      </if>
+      <if test="visitType != null" >
+        VISIT_TYPE = #{visitType,jdbcType=VARCHAR},
+      </if>
+      <if test="visitStartDateTime != null" >
+        VISIT_START_DATE_TIME = #{visitStartDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="visitOrgCode != null" >
+        VISIT_ORG_CODE = #{visitOrgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="visitOrgName != null" >
+        VISIT_ORG_NAME = #{visitOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="hisDeptCode != null" >
+        HIS_DEPT_CODE = #{hisDeptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hisDeptName != null" >
+        HIS_DEPT_NAME = #{hisDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorName != null" >
+        DOCTOR_NAME = #{doctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="smsSendContent != null" >
+        SMS_SEND_CONTENT = #{smsSendContent,jdbcType=VARCHAR},
+      </if>
+      <if test="sendDateTime != null" >
+        SEND_DATE_TIME = #{sendDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isReply != null" >
+        IS_REPLY = #{isReply,jdbcType=INTEGER},
+      </if>
+      <if test="smsReplyContent != null" >
+        SMS_REPLY_CONTENT = #{smsReplyContent,jdbcType=VARCHAR},
+      </if>
+      <if test="replyDateTime != null" >
+        REPLY_DATE_TIME = #{replyDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reflactContent != null" >
+        REFLACT_CONTENT = #{reflactContent,jdbcType=VARCHAR},
+      </if>
+      <if test="isSmsReplyContentValid != null" >
+        IS_SMS_REPLY_CONTENT_VALID = #{isSmsReplyContentValid,jdbcType=INTEGER},
+      </if>
+      <if test="manualProcessed != null" >
+        MANUAL_PROCESSED = #{manualProcessed,jdbcType=INTEGER},
+      </if>
+      <if test="processOrgCode != null" >
+        PROCESS_ORG_CODE = #{processOrgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="processOrgName != null" >
+        PROCESS_ORG_NAME = #{processOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="processPersonId != null" >
+        PROCESS_PERSON_ID = #{processPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="processPersonName != null" >
+        PROCESS_PERSON_NAME = #{processPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="processDateTime != null" >
+        PROCESS_DATE_TIME = #{processDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isSatisfaction != null" >
+        IS_SATISFACTION = #{isSatisfaction,jdbcType=INTEGER},
+      </if>
+      <if test="csrResultCode != null" >
+        CSR_RESULT_CODE = #{csrResultCode,jdbcType=VARCHAR},
+      </if>
+      <if test="csrResultName != null" >
+        CSR_RESULT_NAME = #{csrResultName,jdbcType=VARCHAR},
+      </if>
+      <if test="theBestDoctor != null" >
+        THE_BEST_DOCTOR = #{theBestDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="theWorstDoctor != null" >
+        THE_WORST_DOCTOR = #{theWorstDoctor,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorCode != null" >
+        DOCTOR_CODE = #{doctorCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where RECORD_ID = #{recordId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sms.model.EvaluationRecord" >
+    update csr_record
+    set PLAN_ID = #{planId,jdbcType=INTEGER},
+      IDENTITY_NO = #{identityNo,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      MOBILE_PHONE_NUM = #{mobilePhoneNum,jdbcType=VARCHAR},
+      VISIT_ID = #{visitId,jdbcType=VARCHAR},
+      VISIT_TYPE = #{visitType,jdbcType=VARCHAR},
+      VISIT_START_DATE_TIME = #{visitStartDateTime,jdbcType=TIMESTAMP},
+      VISIT_ORG_CODE = #{visitOrgCode,jdbcType=VARCHAR},
+      VISIT_ORG_NAME = #{visitOrgName,jdbcType=VARCHAR},
+      HIS_DEPT_CODE = #{hisDeptCode,jdbcType=VARCHAR},
+      HIS_DEPT_NAME = #{hisDeptName,jdbcType=VARCHAR},
+      DOCTOR_NAME = #{doctorName,jdbcType=VARCHAR},
+      SMS_SEND_CONTENT = #{smsSendContent,jdbcType=VARCHAR},
+      SEND_DATE_TIME = #{sendDateTime,jdbcType=TIMESTAMP},
+      IS_REPLY = #{isReply,jdbcType=INTEGER},
+      SMS_REPLY_CONTENT = #{smsReplyContent,jdbcType=VARCHAR},
+      REPLY_DATE_TIME = #{replyDateTime,jdbcType=TIMESTAMP},
+      REFLACT_CONTENT = #{reflactContent,jdbcType=VARCHAR},
+      IS_SMS_REPLY_CONTENT_VALID = #{isSmsReplyContentValid,jdbcType=INTEGER},
+      MANUAL_PROCESSED = #{manualProcessed,jdbcType=INTEGER},
+      PROCESS_ORG_CODE = #{processOrgCode,jdbcType=VARCHAR},
+      PROCESS_ORG_NAME = #{processOrgName,jdbcType=VARCHAR},
+      PROCESS_PERSON_ID = #{processPersonId,jdbcType=VARCHAR},
+      PROCESS_PERSON_NAME = #{processPersonName,jdbcType=VARCHAR},
+      PROCESS_DATE_TIME = #{processDateTime,jdbcType=TIMESTAMP},
+      IS_SATISFACTION = #{isSatisfaction,jdbcType=INTEGER},
+      CSR_RESULT_CODE = #{csrResultCode,jdbcType=VARCHAR},
+      CSR_RESULT_NAME = #{csrResultName,jdbcType=VARCHAR},
+      THE_BEST_DOCTOR = #{theBestDoctor,jdbcType=VARCHAR},
+      THE_WORST_DOCTOR = #{theWorstDoctor,jdbcType=VARCHAR},
+      DOCTOR_CODE = #{doctorCode,jdbcType=VARCHAR}
+    where RECORD_ID = #{recordId,jdbcType=INTEGER}
+  </update>
+</mapper>

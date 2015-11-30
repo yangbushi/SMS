@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sms.dao.AeHandleHistoryDao" >
+  <resultMap id="BaseResultMap" type="com.sms.model.AeHandleHistory" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="EVENT_ID" property="eventId" jdbcType="INTEGER" />
+    <result column="HANDLE_DATE_TIME" property="handleDateTime" jdbcType="TIMESTAMP" />
+    <result column="HANDLE_ORG_CODE" property="handleOrgCode" jdbcType="VARCHAR" />
+    <result column="HANDLE_ORG_NAME" property="handleOrgName" jdbcType="VARCHAR" />
+    <result column="HANDLE_PERSON_ID" property="handlePersonId" jdbcType="VARCHAR" />
+    <result column="HANDLE_PERSON_NAME" property="handlePersonName" jdbcType="VARCHAR" />
+    <result column="HANDLE_RESULT" property="handleResult" jdbcType="VARCHAR" />
+    <result column="FEEDBACK_SUMMARY" property="feedbackSummary" jdbcType="VARCHAR" />
+    <result column="FEEDBACK_MEMO" property="feedbackMemo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, EVENT_ID, HANDLE_DATE_TIME, HANDLE_ORG_CODE, HANDLE_ORG_NAME, HANDLE_PERSON_ID, 
+    HANDLE_PERSON_NAME, HANDLE_RESULT, FEEDBACK_SUMMARY, FEEDBACK_MEMO
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from csr_ae_handle_history
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from csr_ae_handle_history
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sms.model.AeHandleHistory" >
+    insert into csr_ae_handle_history (ID, EVENT_ID, HANDLE_DATE_TIME, 
+      HANDLE_ORG_CODE, HANDLE_ORG_NAME, HANDLE_PERSON_ID, 
+      HANDLE_PERSON_NAME, HANDLE_RESULT, FEEDBACK_SUMMARY, 
+      FEEDBACK_MEMO)
+    values (#{id,jdbcType=INTEGER}, #{eventId,jdbcType=INTEGER}, #{handleDateTime,jdbcType=TIMESTAMP}, 
+      #{handleOrgCode,jdbcType=VARCHAR}, #{handleOrgName,jdbcType=VARCHAR}, #{handlePersonId,jdbcType=VARCHAR}, 
+      #{handlePersonName,jdbcType=VARCHAR}, #{handleResult,jdbcType=VARCHAR}, #{feedbackSummary,jdbcType=VARCHAR}, 
+      #{feedbackMemo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sms.model.AeHandleHistory" >
+    insert into csr_ae_handle_history
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="eventId != null" >
+        EVENT_ID,
+      </if>
+      <if test="handleDateTime != null" >
+        HANDLE_DATE_TIME,
+      </if>
+      <if test="handleOrgCode != null" >
+        HANDLE_ORG_CODE,
+      </if>
+      <if test="handleOrgName != null" >
+        HANDLE_ORG_NAME,
+      </if>
+      <if test="handlePersonId != null" >
+        HANDLE_PERSON_ID,
+      </if>
+      <if test="handlePersonName != null" >
+        HANDLE_PERSON_NAME,
+      </if>
+      <if test="handleResult != null" >
+        HANDLE_RESULT,
+      </if>
+      <if test="feedbackSummary != null" >
+        FEEDBACK_SUMMARY,
+      </if>
+      <if test="feedbackMemo != null" >
+        FEEDBACK_MEMO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="eventId != null" >
+        #{eventId,jdbcType=INTEGER},
+      </if>
+      <if test="handleDateTime != null" >
+        #{handleDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="handleOrgCode != null" >
+        #{handleOrgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="handleOrgName != null" >
+        #{handleOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="handlePersonId != null" >
+        #{handlePersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="handlePersonName != null" >
+        #{handlePersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="handleResult != null" >
+        #{handleResult,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackSummary != null" >
+        #{feedbackSummary,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackMemo != null" >
+        #{feedbackMemo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sms.model.AeHandleHistory" >
+    update csr_ae_handle_history
+    <set >
+      <if test="eventId != null" >
+        EVENT_ID = #{eventId,jdbcType=INTEGER},
+      </if>
+      <if test="handleDateTime != null" >
+        HANDLE_DATE_TIME = #{handleDateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="handleOrgCode != null" >
+        HANDLE_ORG_CODE = #{handleOrgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="handleOrgName != null" >
+        HANDLE_ORG_NAME = #{handleOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="handlePersonId != null" >
+        HANDLE_PERSON_ID = #{handlePersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="handlePersonName != null" >
+        HANDLE_PERSON_NAME = #{handlePersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="handleResult != null" >
+        HANDLE_RESULT = #{handleResult,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackSummary != null" >
+        FEEDBACK_SUMMARY = #{feedbackSummary,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackMemo != null" >
+        FEEDBACK_MEMO = #{feedbackMemo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sms.model.AeHandleHistory" >
+    update csr_ae_handle_history
+    set EVENT_ID = #{eventId,jdbcType=INTEGER},
+      HANDLE_DATE_TIME = #{handleDateTime,jdbcType=TIMESTAMP},
+      HANDLE_ORG_CODE = #{handleOrgCode,jdbcType=VARCHAR},
+      HANDLE_ORG_NAME = #{handleOrgName,jdbcType=VARCHAR},
+      HANDLE_PERSON_ID = #{handlePersonId,jdbcType=VARCHAR},
+      HANDLE_PERSON_NAME = #{handlePersonName,jdbcType=VARCHAR},
+      HANDLE_RESULT = #{handleResult,jdbcType=VARCHAR},
+      FEEDBACK_SUMMARY = #{feedbackSummary,jdbcType=VARCHAR},
+      FEEDBACK_MEMO = #{feedbackMemo,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
